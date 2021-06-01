@@ -6,15 +6,15 @@ require_relative 'helper'
 class TestConstants < Test::Unit::TestCase
   def test_constant_version
     assert do
-      Validation::VERSION.instance_of?(String)
+      Eqq::VERSION.instance_of?(String)
     end
 
     assert do
-      Validation::VERSION.frozen?
+      Eqq::VERSION.frozen?
     end
 
     assert do
-      Gem::Version.correct?(Validation::VERSION)
+      Gem::Version.correct?(Eqq::VERSION)
     end
   end
 end

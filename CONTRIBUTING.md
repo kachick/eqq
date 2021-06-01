@@ -11,8 +11,8 @@ Welcome all of the contributions!
 At first, you should install development dependencies
 
 ```console
-$ git clone git@github.com:kachick/validation.git
-$ cd ./validation
+$ git clone git@github.com:kachick/eqq.git
+$ cd ./eqq
 $ ./bin/setup
 # Installed!
 ```

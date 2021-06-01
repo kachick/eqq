@@ -889,6 +889,9 @@ Lint/ConstantDefinitionInBlock:
 Lint/ConstantResolution:
   Enabled: false
 
+Performance/RedundantBlockCall:
+  Enabled: false
+
 Rubycw/Rubycw:
   Enabled: true
   Include:

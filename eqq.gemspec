@@ -1,23 +1,23 @@
 # coding: us-ascii
 # frozen_string_literal: true
 
-lib_name = 'validation'
+lib_name = 'eqq'
 
-require_relative './lib/validation/version'
+require_relative './lib/eqq/version'
 repository_url = "https://github.com/kachick/#{lib_name}"
 
 Gem::Specification.new do |gem|
-  gem.summary       = %q{Validation in Ruby objects}
+  gem.summary       = %q{Pattern objects builder. `eqq` means `#===`}
   gem.description   = <<-'DESCRIPTION'
-    Validation in Ruby objects
+    [4.2, 42, 42.0, 420].grep(Eqq.AND(Integer, 20..50)) #=> [42]
   DESCRIPTION
   gem.homepage      = repository_url
   gem.license       = 'MIT'
   gem.name          = lib_name
-  gem.version       = Validation::VERSION
+  gem.version       = Eqq::VERSION
 
   gem.metadata = {
-    'documentation_uri' => 'https://kachick.github.io/validation',
+    'documentation_uri' => 'https://kachick.github.io/eqq',
     'homepage_uri'      => repository_url,
     'source_code_uri'   => repository_url,
     'bug_tracker_uri'   => "#{repository_url}/issues"
@@ -47,7 +47,7 @@ Gem::Specification.new do |gem|
   files = might_be_parsing_by_tool_as_dependabot ? base_files : (base_files & git_managed_files)
 
   unless might_be_parsing_by_tool_as_dependabot
-    if files.grep(%r!\A(?:lib|sig)/!).size < 5
+    if files.grep(%r!\A(?:lib|sig)/!).size < 2
       raise "obvious mistaken in packaging files, looks shortage: #{files.inspect}"
     end
   end

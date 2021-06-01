@@ -19,4 +19,4 @@ Warning.process do |_warning|
   :raise
 end
 
-require_relative '../lib/validation'
+require_relative '../lib/eqq'
