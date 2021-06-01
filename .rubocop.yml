@@ -843,6 +843,8 @@ Naming/RescuedExceptionsVariableName:
 Naming/VariableName:
   Enabled: true
   EnforcedStyle: 'snake_case'
+  Exclude:
+    - 'lib/eqq/buildable.rb'
 
 Naming/VariableNumber:
   Enabled: false
@@ -908,6 +910,9 @@ Lint/ConstantResolution:
 
 Lint/EmptyInPattern:
   Enabled: true
+
+Lint/Void:
+  Enabled: false
 
 Performance/RedundantBlockCall:
   Enabled: false

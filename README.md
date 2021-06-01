@@ -14,7 +14,7 @@ Require Ruby 2.6 or later
 Add below code into your Gemfile
 
 ```ruby
-gem 'eqq', '>= 0.0.2', '< 0.1.0'
+gem 'eqq', '0.0.2'
 ```
 
 ### Overview
