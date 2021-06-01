@@ -8,7 +8,7 @@ module Eqq
   end
 
   module Buildable
-    # A pribate constant. Should not be used in your code.
+    # A private constant. Should not be used in your code.
     BOOLEAN: ^(untyped object) -> bool
 
     extend Buildable
@@ -37,7 +37,7 @@ module Eqq
   class InvalidProductError < Error
   end
 
-  # A pribate API. Should not be used in your code.
+  # A private API. Should not be used in your code.
   class DSLScope
     include Buildable
   end
