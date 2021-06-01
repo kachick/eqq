@@ -9,12 +9,12 @@ Pattern objects builder.
 
 ## Usage
 
-Require Ruby 2.5 or later
+Require Ruby 2.6 or later
 
 Add below code into your Gemfile
 
 ```ruby
-gem 'eqq', '>= 0.0.1', '< 0.1.0'
+gem 'eqq', '>= 0.0.2', '< 0.1.0'
 ```
 
 ### Overview
