@@ -23,7 +23,17 @@ Rake::TestTask.new(:test) do |tt|
   tt.warning = true
 end
 
-task validate_signatures: [:test_yard]
+task validate_signatures: [:test_yard, :'signature:validate']
+
+namespace :signature do
+  task :validate do
+    sh 'bundle exec rbs -rsecurerandom -rmonitor -I sig validate'
+  end
+
+  task :check_false_positive do
+    sh 'bundle exec steep check --log-level=fatal'
+  end
+end
 
 task :test_yard do
   sh "bundle exec yard --fail-on-warning #{'--no-progress' if ENV['CI']}"

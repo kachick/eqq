@@ -1,0 +1,49 @@
+module Eqq
+  interface _Patternable
+    def ===: (untyped object) -> bool
+  end
+
+  interface _ToSym
+    def to_sym: -> Symbol
+  end
+
+  module Buildable
+    # A pribate constant. Should not be used in your code.
+    BOOLEAN: ^(untyped object) -> bool
+
+    extend Buildable
+    def OR: (_Patternable, _Patternable, *_Patternable) -> ^(untyped object) -> bool
+    def AND: (_Patternable, _Patternable, *_Patternable) -> ^(untyped object) -> bool
+    def NAND: (_Patternable, _Patternable, *_Patternable) -> ^(untyped object) -> bool
+    def NOR: (_Patternable, _Patternable, *_Patternable) -> ^(untyped object) -> bool
+    def XOR: (_Patternable, _Patternable, *_Patternable) -> ^(untyped object) -> bool
+    def XNOR: (_Patternable, _Patternable, *_Patternable) -> ^(untyped object) -> bool
+    def NOT: (_Patternable) -> ^(untyped object) -> bool
+    def EQ: (untyped object) -> ^(untyped object) -> bool
+    def SAME: (untyped object) -> ^(untyped object) -> bool
+    def CAN: (_ToSym, *_ToSym) -> ^(untyped object) -> bool
+    def RESCUE: (Module, _Patternable) -> ^(untyped object) -> bool
+    def QUIET: (_Patternable, *_Patternable) -> ^(untyped object) -> bool
+    def SEND: (Symbol | String name, _Patternable) -> ^(untyped object) -> bool
+    def ANYTHING: () -> BasicObject
+    def BOOLEAN: () -> ^(untyped object) -> bool
+  end
+
+  extend Buildable
+
+  class Error < StandardError
+  end
+
+  class InvalidProductError < Error
+  end
+
+  # A pribate API. Should not be used in your code.
+  class DSLScope
+    include Buildable
+  end
+
+  VERSION: String
+
+  def self.valid?: (untyped object) -> bool
+  def self.define:  { () -> _Patternable } -> _Patternable
+end
