@@ -2,5 +2,6 @@
 # frozen_string_literal: true
 
 module Eqq
-  VERSION = '0.0.3'
+  # This will be same as latest published gem version
+  VERSION = '0.0.4'
 end

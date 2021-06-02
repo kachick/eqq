@@ -2,8 +2,11 @@
 # frozen_string_literal: true
 
 module Eqq
+  # Actually having definitions for the pattern builders
   module Buildable
     class << self
+      # When the inspection is failed some unexpected reasons, it will fallback to this value
+      # This value is not fixed as a spec, might be changed in future
       INSPECTION_FALLBACK = 'UninspectableObject'
 
       # @api private

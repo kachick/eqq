@@ -6,8 +6,12 @@
 
 require_relative 'eqq/version'
 
+# Pattern objects builder
 module Eqq
+  # Base error of this library
   class Error < StandardError; end
+
+  # Raised when found some products are invalid as a pattern object
   class InvalidProductError < Error; end
 
   class << self
@@ -25,6 +29,7 @@ module Eqq
     end
 
     # @return [#===]
+    # @raise [InvalidProductError] if the return value is invalid as a pattern object
     def define(&block)
       pattern = DSLScope.new.instance_exec(&block)
       raise InvalidProductError unless valid?(pattern)
