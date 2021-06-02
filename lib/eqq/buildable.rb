@@ -27,8 +27,8 @@ module Eqq
 
       # @api private
       # @return [void]
-      def set_inspect(name:, product:, patterns:)
-        inspect = "#{name}(#{patterns.map { |pattern| safe_inspect(pattern) }.join(', ')})"
+      def set_inspect(name:, product:, arguments:)
+        inspect = "#{name}(#{arguments.map { |argument| safe_inspect(argument) }.join(', ')})"
         product.define_singleton_method(:inspect) do
           inspect
         end
@@ -49,9 +49,16 @@ module Eqq
     # @return [Proc]
     #   this lambda return true if match all patterns
     def AND(pattern1, pattern2, *patterns)
-      ->v {
+      patterns = [pattern1, pattern2, *patterns]
+      Buildable.validate_patterns(*patterns)
+
+      product = ->v {
         [pattern1, pattern2, *patterns].all? { |pattern| pattern === v }
       }
+
+      Buildable.set_inspect(name: 'AND', product: product, arguments: patterns)
+
+      product
     end
 
     # @param pattern1 [Proc, Method, #===]
@@ -73,7 +80,7 @@ module Eqq
       product = ->v {
         patterns.any? { |pattern| pattern === v }
       }
-      Buildable.set_inspect(name: 'OR', product: product, patterns: patterns)
+      Buildable.set_inspect(name: 'OR', product: product, arguments: patterns)
 
       product
     end
@@ -109,33 +116,43 @@ module Eqq
     def NOT(pattern)
       Buildable.validate_patterns(pattern)
 
-      ->v { !(pattern === v) }
+      product = ->v { !(pattern === v) }
+
+      Buildable.set_inspect(name: 'NOT', product: product, arguments: [pattern])
+
+      product
     end
 
     # A pattern builder.
     # @param obj [#==]
     # @return [Proc]
     def EQ(obj)
-      ->v { obj == v }
+      ->v { obj == v }.tap do |product|
+        Buildable.set_inspect(name: 'EQ', product: product, arguments: [obj])
+      end
     end
 
     # @param obj [#equal?]
     # @return [Proc]
     def SAME(obj)
-      ->v { obj.equal?(v) }
+      ->v { obj.equal?(v) }.tap do |product|
+        Buildable.set_inspect(name: 'SAME', product: product, arguments: [obj])
+      end
     end
 
     # @param message1 [Symbol, String]
     # @param messages [Array<Symbol, String>]
     # @return [Proc]
     def CAN(message1, *messages)
-      messages = begin
-        [message1, *messages].map(&:to_sym)
-      rescue NoMethodError
-        raise ArgumentError
-      end
+      messages = (
+        begin
+          [message1, *messages].map(&:to_sym)
+        rescue NoMethodError
+          raise ArgumentError
+        end
+      )
 
-      ->v {
+      product = ->v {
         messages.all? { |message|
           begin
             v.respond_to?(message)
@@ -144,6 +161,10 @@ module Eqq
           end
         }
       }
+
+      Buildable.set_inspect(name: 'CAN', product: product, arguments: messages)
+
+      product
     end
 
     # @param pattern1 [Proc, Method, #===]
@@ -153,7 +174,7 @@ module Eqq
       patterns = [pattern1, *patterns]
       Buildable.validate_patterns(*patterns)
 
-      ->v {
+      product = ->v {
         patterns.all? { |pattern|
           begin
             pattern === v
@@ -164,6 +185,10 @@ module Eqq
           end
         }
       }
+
+      Buildable.set_inspect(name: 'QUIET', product: product, arguments: patterns)
+
+      product
     end
 
     # @param mod [Module]
@@ -173,7 +198,7 @@ module Eqq
       Buildable.validate_patterns(pattern)
       raise ArgumentError unless Module === mod
 
-      ->v {
+      product = ->v {
         begin
           pattern === v
           false
@@ -183,23 +208,34 @@ module Eqq
           false
         end
       }
+
+      Buildable.set_inspect(name: 'RESCUE', product: product, arguments: [mod, pattern])
+
+      product
     end
 
     # @param name [Symbol, #to_sym]
     # @param pattern [Proc, Method, #===]
     # @return [Proc]
     def SEND(name, pattern)
-      raise InvalidProductError unless Eqq.valid?(pattern)
+      Buildable.validate_patterns(pattern)
 
-      ->v {
+      product = ->v {
         v.__send__(name, pattern)
       }
+
+      Buildable.set_inspect(name: 'SEND', product: product, arguments: [name, pattern])
+
+      product
     end
 
-    # @return [BasicObject]
+    ANYTHING = ->_v { true }
+    Buildable.set_inspect(name: 'ANYTHING', product: ANYTHING, arguments: [])
+    private_constant :ANYTHING
+
+    # @return [ANYTHING]
     def ANYTHING
-      # BasicObject.=== always passing
-      BasicObject
+      ANYTHING
     end
 
     BOOLEAN = OR(SAME(true), SAME(false))

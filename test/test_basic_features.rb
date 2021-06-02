@@ -51,6 +51,7 @@ class TestBasicFeatures < Test::Unit::TestCase
   def test_AND
     pattern = Eqq.AND(/\d/, Symbol, /bar/)
     assert_lambda_signature(pattern)
+    assert_equal('AND(/\d/, Symbol, /bar/)', pattern.inspect)
 
     expectation_by_given_value = {
       'foo42bar' => false,
@@ -173,6 +174,7 @@ class TestBasicFeatures < Test::Unit::TestCase
   def test_NOT
     pattern = Eqq.NOT(Eqq.EQ(42))
     assert_lambda_signature(pattern)
+    assert_equal('NOT(EQ(42))', pattern.inspect)
 
     expectation_by_given_value = {
       42 => false,
@@ -300,7 +302,7 @@ class TestBasicFeatures < Test::Unit::TestCase
 
   def test_ANYTHING
     pattern = Eqq.ANYTHING
-    assert_same(BasicObject, pattern)
+    assert_lambda_signature(pattern)
 
     [42, nil, false, true, 'string', Object.new, [], {}].each do |given|
       assert_equal(true, pattern === given, "given: #{given}")

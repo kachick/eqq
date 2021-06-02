@@ -11,13 +11,16 @@ module Eqq
     type product = ^(untyped object) -> bool
 
     # A private constant. Should not be used in your code.
+    ANYTHING: product
+
+    # A private constant. Should not be used in your code.
     BOOLEAN: product
 
     # A private API. Should not be used in your code.
     def self.safe_inspect: (untyped object)-> String
 
     # A private API. Should not be used in your code.
-    def self.set_inspect: (name: String, product: product, patterns: Array[_Patternable])-> void
+    def self.set_inspect: (name: String, product: product, arguments: Array[untyped])-> void
 
     # A private API. Should not be used in your code.
     def self.validate_patterns: (*untyped) -> void
@@ -36,7 +39,7 @@ module Eqq
     def RESCUE: (Module, _Patternable) -> product
     def QUIET: (_Patternable, *_Patternable) -> product
     def SEND: (Symbol | String name, _Patternable) -> product
-    def ANYTHING: () -> BasicObject
+    def ANYTHING: () -> product
     def BOOLEAN: () -> product
   end
 
