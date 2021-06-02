@@ -119,7 +119,6 @@ module Eqq
       product
     end
 
-    # A pattern builder.
     # @param obj [#==]
     # @return [Proc]
     def EQ(obj)
@@ -136,8 +135,8 @@ module Eqq
       end
     end
 
-    # @param message1 [Symbol, String]
-    # @param messages [Array<Symbol, String>]
+    # @param message1 [Symbol, String, #to_sym]
+    # @param messages [Array<Symbol, String, #to_sym>]
     # @return [Proc]
     def CAN(message1, *messages)
       messages = (
@@ -210,10 +209,17 @@ module Eqq
       product
     end
 
-    # @param name [Symbol, #to_sym]
+    # @param name [Symbol, String, #to_sym]
     # @param pattern [Proc, Method, #===]
     # @return [Proc]
     def SEND(name, pattern)
+      name = (
+        begin
+          name.to_sym
+        rescue NoMethodError
+          raise ArgumentError
+        end
+      )
       Buildable.validate_patterns(pattern)
 
       product = ->v {

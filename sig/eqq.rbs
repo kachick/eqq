@@ -7,8 +7,13 @@ module Eqq
     def to_sym: -> Symbol
   end
 
+  interface _Inspectable
+    def inspect: () -> String
+  end
+
   module Buildable
-    type product = ^(untyped object) -> bool
+    type patternable_lambda = ^(untyped object) -> bool
+    type product = patternable_lambda & _Inspectable
 
     # A private constant. Should not be used in your code.
     ANYTHING: product
@@ -20,7 +25,7 @@ module Eqq
     def self.safe_inspect: (untyped object)-> String
 
     # A private API. Should not be used in your code.
-    def self.set_inspect: (name: String, product: product, arguments: Array[untyped])-> void
+    def self.set_inspect: (name: String, product: patternable_lambda, arguments: Array[untyped])-> void
 
     # A private API. Should not be used in your code.
     def self.validate_patterns: (*untyped) -> void
