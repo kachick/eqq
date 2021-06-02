@@ -10,6 +10,7 @@ class TestBasicFeatures < Test::Unit::TestCase
     pattern = Eqq.OR(42, 53, 64, 75)
     assert_lambda_signature(pattern)
     assert_equal('OR(42, 53, 64, 75)', pattern.inspect)
+    assert(pattern.inspect.frozen?)
 
     expectation_by_given_value = {
       42 => true,
@@ -91,6 +92,7 @@ class TestBasicFeatures < Test::Unit::TestCase
     end.new
     pattern = Eqq.CAN(:foo, :bar)
     assert_lambda_signature(pattern)
+    assert_equal('CAN(:foo, :bar)', pattern.inspect)
 
     expectation_by_given_value = {
       not_matched1 => false,
@@ -120,6 +122,7 @@ class TestBasicFeatures < Test::Unit::TestCase
   def test_SAME
     pattern = Eqq.SAME(42)
     assert_lambda_signature(pattern)
+    assert_equal('SAME(42)', pattern.inspect)
 
     expectation_by_given_value = {
       42 => true,
@@ -147,6 +150,7 @@ class TestBasicFeatures < Test::Unit::TestCase
   def test_EQ
     pattern = Eqq.EQ(42)
     assert_lambda_signature(pattern)
+    assert_equal('EQ(42)', pattern.inspect)
 
     expectation_by_given_value = {
       42 => true,
@@ -202,6 +206,7 @@ class TestBasicFeatures < Test::Unit::TestCase
   def test_RESCUE_with_Exception
     pattern = Eqq.RESCUE(NoMethodError, Eqq.SEND(:any?, Integer))
     assert_lambda_signature(pattern)
+    assert_equal('RESCUE(NoMethodError, SEND(:any?, Integer))', pattern.inspect)
 
     expectation_by_given_value = {
       [] => false,
@@ -253,6 +258,7 @@ class TestBasicFeatures < Test::Unit::TestCase
   def test_QUIET
     pattern = Eqq.QUIET(Eqq.SEND(:any?, Integer), Eqq.SEND(:all?, String))
     assert_lambda_signature(pattern)
+    assert_equal('QUIET(SEND(:any?, Integer), SEND(:all?, String))', pattern.inspect)
 
     expectation_by_given_value = {
       [] => true,
@@ -277,6 +283,7 @@ class TestBasicFeatures < Test::Unit::TestCase
   def test_SEND
     pattern = Eqq.SEND(:all?, /foo/)
     assert_lambda_signature(pattern)
+    assert_equal('SEND(:all?, /foo/)', pattern.inspect)
 
     assert_equal(true, pattern === ['foo', :foo, 'foobar'])
     assert_equal(false, pattern === ['foo', :foo, 'foobar', 'baz'])
@@ -290,6 +297,7 @@ class TestBasicFeatures < Test::Unit::TestCase
   def test_BOOLEAN
     pattern = Eqq.BOOLEAN
     assert_lambda_signature(pattern)
+    assert_equal('OR(SAME(true), SAME(false))', pattern.inspect)
 
     [false, true].each do |given|
       assert_equal(true, pattern === given, "given: #{given}")
@@ -303,6 +311,7 @@ class TestBasicFeatures < Test::Unit::TestCase
   def test_ANYTHING
     pattern = Eqq.ANYTHING
     assert_lambda_signature(pattern)
+    assert_equal('ANYTHING()', pattern.inspect)
 
     [42, nil, false, true, 'string', Object.new, [], {}].each do |given|
       assert_equal(true, pattern === given, "given: #{given}")

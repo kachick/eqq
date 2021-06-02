@@ -28,7 +28,7 @@ module Eqq
       # @api private
       # @return [void]
       def set_inspect(name:, product:, arguments:)
-        inspect = "#{name}(#{arguments.map { |argument| safe_inspect(argument) }.join(', ')})"
+        inspect = "#{name}(#{arguments.map { |argument| safe_inspect(argument) }.join(', ')})".freeze
         product.define_singleton_method(:inspect) do
           inspect
         end
