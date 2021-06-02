@@ -48,7 +48,7 @@ module Eqq
     # @param patterns [Array<Proc, Method, #===>]
     # @return [Proc]
     def AND(pattern1, pattern2, *patterns)
-      patterns = [pattern1, pattern2, *patterns]
+      patterns = [pattern1, pattern2, *patterns].freeze
       Buildable.validate_patterns(*patterns)
 
       product = ->v {
@@ -73,7 +73,7 @@ module Eqq
     # @param patterns [Array<Proc, Method, #===>]
     # @return [Proc]
     def OR(pattern1, pattern2, *patterns)
-      patterns = [pattern1, pattern2, *patterns]
+      patterns = [pattern1, pattern2, *patterns].freeze
       Buildable.validate_patterns(*patterns)
 
       product = ->v {
@@ -96,7 +96,7 @@ module Eqq
     # @param pattern2 [Proc, Method, #===]
     # @return [Proc]
     def XOR(pattern1, pattern2)
-      patterns = [pattern1, pattern2]
+      patterns = [pattern1, pattern2].freeze
       Buildable.validate_patterns(*patterns)
 
       product = ->v {
@@ -142,7 +142,7 @@ module Eqq
     def CAN(message1, *messages)
       messages = (
         begin
-          [message1, *messages].map(&:to_sym)
+          [message1, *messages].map(&:to_sym).freeze
         rescue NoMethodError
           raise ArgumentError
         end
@@ -167,7 +167,7 @@ module Eqq
     # @param patterns [Array<Proc, Method, #===>]
     # @return [Proc]
     def QUIET(pattern1, *patterns)
-      patterns = [pattern1, *patterns]
+      patterns = [pattern1, *patterns].freeze
       Buildable.validate_patterns(*patterns)
 
       product = ->v {
