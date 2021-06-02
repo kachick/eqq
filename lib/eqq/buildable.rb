@@ -52,7 +52,7 @@ module Eqq
       Buildable.validate_patterns(*patterns)
 
       product = ->v {
-        [pattern1, pattern2, *patterns].all? { |pattern| pattern === v }
+        patterns.all? { |pattern| pattern === v }
       }
 
       Buildable.set_inspect(name: 'AND', product: product, arguments: patterns)
