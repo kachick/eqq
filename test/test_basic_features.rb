@@ -392,7 +392,7 @@ class TestBasicFeatures < Test::Unit::TestCase
   def test_BOOLEAN
     pattern = Eqq.BOOLEAN
     assert_lambda_signature(pattern)
-    assert_equal('OR(SAME(true), SAME(false))', pattern.inspect)
+    assert_equal('BOOLEAN()', pattern.inspect)
 
     [false, true].each do |given|
       assert_equal(true, pattern === given, "given: #{given}")

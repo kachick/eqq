@@ -30,7 +30,6 @@ module Eqq
     # A private API. Should not be used in your code.
     def self.validate_patterns: (*untyped) -> void
 
-    extend Buildable
     def OR: (_Patternable, _Patternable, *_Patternable) -> product
     def AND: (_Patternable, _Patternable, *_Patternable) -> product
     def NAND: (_Patternable, _Patternable, *_Patternable) -> product

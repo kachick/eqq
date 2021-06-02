@@ -3,8 +3,6 @@
 
 module Eqq
   module Buildable
-    extend self
-
     class << self
       INSPECTION_FALLBACK = 'UninspectableObject'
 
@@ -240,7 +238,8 @@ module Eqq
       ANYTHING
     end
 
-    BOOLEAN = OR(SAME(true), SAME(false))
+    BOOLEAN = ->v { true.equal?(v) || false.equal?(v) }
+    Buildable.set_inspect(name: 'BOOLEAN', product: BOOLEAN, arguments: [])
     private_constant :BOOLEAN
 
     # @return [BOOLEAN]
