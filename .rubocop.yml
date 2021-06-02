@@ -914,6 +914,12 @@ Lint/EmptyInPattern:
 Lint/Void:
   Enabled: false
 
+Lint/LiteralAsCondition:
+  Enabled: true
+  Exclude:
+    - 'test/test_examples.rb'
+    - 'README.*'
+
 Performance/RedundantBlockCall:
   Enabled: false
 
