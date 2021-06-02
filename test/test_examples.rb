@@ -14,6 +14,38 @@ class TestExamples < Test::Unit::TestCase
     pattern = Eqq.define do
       OR(AND(Float, 20..50), Integer)
     end
+    assert_equal('OR(AND(Float, 20..50), Integer)', pattern.inspect)
     assert_equal([42, 42.0, 420], [4.2, 42, 42.0, 420].grep(pattern))
+
+    inverted = Eqq.NOT(pattern)
+    assert_equal('NOT(OR(AND(Float, 20..50), Integer))', inverted.inspect)
+    assert_equal([4.2], [4.2, 42, 42.0, 420].grep(inverted))
+
+    assert_equal(false, Eqq.SEND(:all?, pattern) === [4.2, 42, 42.0, 420])
+    assert_equal(true, Eqq.SEND(:any?, pattern) === [4.2, 42, 42.0, 420])
+
+    ret_in_case = (
+      case 42
+      when pattern
+        'Should be matched here! :)'
+      when inverted
+        'Should not be matched here! :<'
+      else
+        'Should not be matched here too! :<'
+      end
+    )
+    assert_equal('Should be matched here! :)', ret_in_case)
+
+    ret_in_case = (
+      case 4.2
+      when pattern
+        'Should not be matched here! :<'
+      when inverted
+        'Should be matched here! :)'
+      else
+        'Should not be matched here too! :<'
+      end
+    )
+    assert_equal('Should be matched here! :)', ret_in_case)
   end
 end

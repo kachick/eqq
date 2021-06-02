@@ -9,6 +9,8 @@ class TestBasicFeatures < Test::Unit::TestCase
   def test_OR
     pattern = Eqq.OR(42, 53, 64, 75)
     assert_lambda_signature(pattern)
+    assert_equal('OR(42, 53, 64, 75)', pattern.inspect)
+    assert(pattern.inspect.frozen?)
 
     expectation_by_given_value = {
       42 => true,
@@ -36,11 +38,86 @@ class TestBasicFeatures < Test::Unit::TestCase
     end
 
     assert_lambda_signature(Eqq.OR(42, 53))
+
+    evil = []
+    class << evil
+      undef_method :===
+    end
+    err = assert_raises(ArgumentError) do
+      Eqq.OR(evil, 42, BasicObject.new)
+    end
+    assert_match(/given `\[\], #<BasicObject\S+` are invalid as pattern objects/, err.message)
+  end
+
+  def test_NOR
+    pattern = Eqq.NOR(42, 53, 64, 75)
+    assert_lambda_signature(pattern)
+    assert_equal('NOT(OR(42, 53, 64, 75))', pattern.inspect)
+
+    expectation_by_given_value = {
+      42 => false,
+      53 => false,
+      64 => false,
+      75 => false,
+      42.0 => false,
+      nil => true,
+      Object.new => true,
+      42.1 => true,
+      41 => true,
+      76 => true
+    }
+
+    expectation_by_given_value.each_pair do |given, expectation|
+      assert_equal(expectation, pattern === given, "given: #{given}")
+    end
+
+    assert_raises(ArgumentError) do
+      Eqq.NOR()
+    end
+
+    assert_raises(ArgumentError) do
+      Eqq.NOR(42)
+    end
+
+    assert_lambda_signature(Eqq.NOR(42, 53))
+  end
+
+  def test_XOR
+    pattern = Eqq.XOR(/\d/, Symbol)
+    assert_lambda_signature(pattern)
+    assert_equal('XOR(/\d/, Symbol)', pattern.inspect)
+
+    expectation_by_given_value = {
+      'foo42bar' => true,
+      :foo42bar => false,
+      42 => false,
+      :foobar => true,
+      :foo42baz => false,
+      nil => false,
+      Object.new => false
+    }
+
+    expectation_by_given_value.each_pair do |given, expectation|
+      assert_equal(expectation, pattern === given, "given: #{given}")
+    end
+
+    assert_raises(ArgumentError) do
+      Eqq.XOR()
+    end
+
+    assert_raises(ArgumentError) do
+      Eqq.XOR(42)
+    end
+
+    assert_raises(ArgumentError) do
+      Eqq.XOR(42, 43, 44)
+    end
   end
 
   def test_AND
     pattern = Eqq.AND(/\d/, Symbol, /bar/)
     assert_lambda_signature(pattern)
+    assert_equal('AND(/\d/, Symbol, /bar/)', pattern.inspect)
 
     expectation_by_given_value = {
       'foo42bar' => false,
@@ -67,6 +144,36 @@ class TestBasicFeatures < Test::Unit::TestCase
     assert_lambda_signature(Eqq.AND(42, Integer))
   end
 
+  def test_NAND
+    pattern = Eqq.NAND(/\d/, Symbol, /bar/)
+    assert_lambda_signature(pattern)
+    assert_equal('NOT(AND(/\d/, Symbol, /bar/))', pattern.inspect)
+
+    expectation_by_given_value = {
+      'foo42bar' => true,
+      :foo42bar => false,
+      42 => true,
+      :foobar => true,
+      :foo42baz => true,
+      nil => true,
+      Object.new => true
+    }
+
+    expectation_by_given_value.each_pair do |given, expectation|
+      assert_equal(expectation, pattern === given, "given: #{given}")
+    end
+
+    assert_raises(ArgumentError) do
+      Eqq.NAND()
+    end
+
+    assert_raises(ArgumentError) do
+      Eqq.NAND(42)
+    end
+
+    assert_lambda_signature(Eqq.NAND(42, Integer))
+  end
+
   def test_CAN
     not_matched1 = Class.new do
       def foo; end
@@ -80,6 +187,7 @@ class TestBasicFeatures < Test::Unit::TestCase
     end.new
     pattern = Eqq.CAN(:foo, :bar)
     assert_lambda_signature(pattern)
+    assert_equal('CAN(:foo, :bar)', pattern.inspect)
 
     expectation_by_given_value = {
       not_matched1 => false,
@@ -109,6 +217,7 @@ class TestBasicFeatures < Test::Unit::TestCase
   def test_SAME
     pattern = Eqq.SAME(42)
     assert_lambda_signature(pattern)
+    assert_equal('SAME(42)', pattern.inspect)
 
     expectation_by_given_value = {
       42 => true,
@@ -136,6 +245,7 @@ class TestBasicFeatures < Test::Unit::TestCase
   def test_EQ
     pattern = Eqq.EQ(42)
     assert_lambda_signature(pattern)
+    assert_equal('EQ(42)', pattern.inspect)
 
     expectation_by_given_value = {
       42 => true,
@@ -163,6 +273,7 @@ class TestBasicFeatures < Test::Unit::TestCase
   def test_NOT
     pattern = Eqq.NOT(Eqq.EQ(42))
     assert_lambda_signature(pattern)
+    assert_equal('NOT(EQ(42))', pattern.inspect)
 
     expectation_by_given_value = {
       42 => false,
@@ -190,6 +301,7 @@ class TestBasicFeatures < Test::Unit::TestCase
   def test_RESCUE_with_Exception
     pattern = Eqq.RESCUE(NoMethodError, Eqq.SEND(:any?, Integer))
     assert_lambda_signature(pattern)
+    assert_equal('RESCUE(NoMethodError, SEND(:any?, Integer))', pattern.inspect)
 
     expectation_by_given_value = {
       [] => false,
@@ -241,6 +353,7 @@ class TestBasicFeatures < Test::Unit::TestCase
   def test_QUIET
     pattern = Eqq.QUIET(Eqq.SEND(:any?, Integer), Eqq.SEND(:all?, String))
     assert_lambda_signature(pattern)
+    assert_equal('QUIET(SEND(:any?, Integer), SEND(:all?, String))', pattern.inspect)
 
     expectation_by_given_value = {
       [] => true,
@@ -265,6 +378,7 @@ class TestBasicFeatures < Test::Unit::TestCase
   def test_SEND
     pattern = Eqq.SEND(:all?, /foo/)
     assert_lambda_signature(pattern)
+    assert_equal('SEND(:all?, /foo/)', pattern.inspect)
 
     assert_equal(true, pattern === ['foo', :foo, 'foobar'])
     assert_equal(false, pattern === ['foo', :foo, 'foobar', 'baz'])
@@ -278,6 +392,7 @@ class TestBasicFeatures < Test::Unit::TestCase
   def test_BOOLEAN
     pattern = Eqq.BOOLEAN
     assert_lambda_signature(pattern)
+    assert_equal('OR(SAME(true), SAME(false))', pattern.inspect)
 
     [false, true].each do |given|
       assert_equal(true, pattern === given, "given: #{given}")
@@ -290,7 +405,8 @@ class TestBasicFeatures < Test::Unit::TestCase
 
   def test_ANYTHING
     pattern = Eqq.ANYTHING
-    assert_same(BasicObject, pattern)
+    assert_lambda_signature(pattern)
+    assert_equal('ANYTHING()', pattern.inspect)
 
     [42, nil, false, true, 'string', Object.new, [], {}].each do |given|
       assert_equal(true, pattern === given, "given: #{given}")
@@ -321,7 +437,6 @@ class TestBasicFeatures < Test::Unit::TestCase
       NAND
       NOR
       XOR
-      XNOR
       NOT
       EQ
       SAME

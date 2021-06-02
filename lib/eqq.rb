@@ -4,18 +4,11 @@
 # Copyright (c) 2011 Kenichi Kamiya
 # Forked from https://github.com/kachick/validation at 2021
 
-require_relative 'eqq/buildable'
 require_relative 'eqq/version'
 
 module Eqq
-  extend Buildable
-
   class Error < StandardError; end
   class InvalidProductError < Error; end
-
-  class DSLScope
-    include Buildable
-  end
 
   class << self
     def valid?(object)
@@ -31,11 +24,22 @@ module Eqq
       end
     end
 
+    # @return [#===]
     def define(&block)
       pattern = DSLScope.new.instance_exec(&block)
       raise InvalidProductError unless valid?(pattern)
 
       pattern
     end
+  end
+end
+
+require_relative 'eqq/buildable'
+
+module Eqq
+  extend Buildable
+
+  class DSLScope
+    include Buildable
   end
 end
