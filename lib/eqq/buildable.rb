@@ -47,7 +47,6 @@ module Eqq
     # @param pattern2 [Proc, Method, #===]
     # @param patterns [Array<Proc, Method, #===>]
     # @return [Proc]
-    #   this lambda return true if match all patterns
     def AND(pattern1, pattern2, *patterns)
       patterns = [pattern1, pattern2, *patterns]
       Buildable.validate_patterns(*patterns)
