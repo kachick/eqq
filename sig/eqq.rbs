@@ -8,25 +8,36 @@ module Eqq
   end
 
   module Buildable
+    type product = ^(untyped object) -> bool
+
     # A private constant. Should not be used in your code.
-    BOOLEAN: ^(untyped object) -> bool
+    BOOLEAN: product
+
+    # A private API. Should not be used in your code.
+    def self.safe_inspect: (untyped object)-> String
+
+    # A private API. Should not be used in your code.
+    def self.set_inspect: (name: String, product: product, patterns: Array[_Patternable])-> void
+
+    # A private API. Should not be used in your code.
+    def self.validate_patterns: (*untyped) -> void
 
     extend Buildable
-    def OR: (_Patternable, _Patternable, *_Patternable) -> ^(untyped object) -> bool
-    def AND: (_Patternable, _Patternable, *_Patternable) -> ^(untyped object) -> bool
-    def NAND: (_Patternable, _Patternable, *_Patternable) -> ^(untyped object) -> bool
-    def NOR: (_Patternable, _Patternable, *_Patternable) -> ^(untyped object) -> bool
-    def XOR: (_Patternable, _Patternable, *_Patternable) -> ^(untyped object) -> bool
-    def XNOR: (_Patternable, _Patternable, *_Patternable) -> ^(untyped object) -> bool
-    def NOT: (_Patternable) -> ^(untyped object) -> bool
-    def EQ: (untyped object) -> ^(untyped object) -> bool
-    def SAME: (untyped object) -> ^(untyped object) -> bool
-    def CAN: (_ToSym, *_ToSym) -> ^(untyped object) -> bool
-    def RESCUE: (Module, _Patternable) -> ^(untyped object) -> bool
-    def QUIET: (_Patternable, *_Patternable) -> ^(untyped object) -> bool
-    def SEND: (Symbol | String name, _Patternable) -> ^(untyped object) -> bool
+    def OR: (_Patternable, _Patternable, *_Patternable) -> product
+    def AND: (_Patternable, _Patternable, *_Patternable) -> product
+    def NAND: (_Patternable, _Patternable, *_Patternable) -> product
+    def NOR: (_Patternable, _Patternable, *_Patternable) -> product
+    def XOR: (_Patternable, _Patternable, *_Patternable) -> product
+    def XNOR: (_Patternable, _Patternable, *_Patternable) -> product
+    def NOT: (_Patternable) -> product
+    def EQ: (untyped object) -> product
+    def SAME: (untyped object) -> product
+    def CAN: (_ToSym, *_ToSym) -> product
+    def RESCUE: (Module, _Patternable) -> product
+    def QUIET: (_Patternable, *_Patternable) -> product
+    def SEND: (Symbol | String name, _Patternable) -> product
     def ANYTHING: () -> BasicObject
-    def BOOLEAN: () -> ^(untyped object) -> bool
+    def BOOLEAN: () -> product
   end
 
   extend Buildable
@@ -49,7 +60,4 @@ module Eqq
 
   def self.valid?: (untyped object) -> bool
   def self.define:  { () -> _Patternable } -> _Patternable
-
-  # A private API. Should not be used in your code.
-  def self.safe_inspect: (untyped object)-> String
 end

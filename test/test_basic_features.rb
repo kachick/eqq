@@ -37,6 +37,15 @@ class TestBasicFeatures < Test::Unit::TestCase
     end
 
     assert_lambda_signature(Eqq.OR(42, 53))
+
+    evil = []
+    class << evil
+      undef_method :===
+    end
+    err = assert_raises(ArgumentError) do
+      Eqq.OR(evil, 42, BasicObject.new)
+    end
+    assert_match(/given `\[\], #<BasicObject\S+` are invalid as pattern objects/, err.message)
   end
 
   def test_AND

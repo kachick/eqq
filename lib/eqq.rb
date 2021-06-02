@@ -10,9 +10,6 @@ module Eqq
   class Error < StandardError; end
   class InvalidProductError < Error; end
 
-  INSPECTION_FALLBACK = 'UninspectableObject'
-  private_constant :INSPECTION_FALLBACK
-
   class << self
     def valid?(object)
       case object
@@ -24,22 +21,6 @@ module Eqq
         rescue NoMethodError
           false
         end
-      end
-    end
-
-    # @return [String]
-    def safe_inspect(object)
-      String.try_convert(object.inspect) || INSPECTION_FALLBACK
-    rescue Exception
-      # This implementation used `RSpec::Support::ObjectFormatter::UninspectableObjectInspector` as a reference, thank you!
-      # ref: https://github.com/kachick/times_kachick/issues/97
-      singleton_class = class << object; self; end
-      begin
-        klass = singleton_class.ancestors.detect { |ancestor| !ancestor.equal?(singleton_class) }
-        native_object_id = '%#016x' % (object.__id__ << 1)
-        "#<#{klass}:#{native_object_id}>"
-      rescue Exception
-        INSPECTION_FALLBACK
       end
     end
 
