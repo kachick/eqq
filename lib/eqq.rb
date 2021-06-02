@@ -42,4 +42,5 @@ module Eqq
   class DSLScope
     include Buildable
   end
+  private_constant :DSLScope
 end
