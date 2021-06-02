@@ -405,7 +405,6 @@ class TestBasicFeatures < Test::Unit::TestCase
       NAND
       NOR
       XOR
-      XNOR
       NOT
       EQ
       SAME

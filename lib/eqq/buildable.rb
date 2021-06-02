@@ -102,14 +102,6 @@ module Eqq
       }
     end
 
-    # @param pattern1 [Proc, Method, #===]
-    # @param pattern2 [Proc, Method, #===]
-    # @param patterns [Array<Proc, Method, #===>]
-    # @return [Proc]
-    def XNOR(pattern1, pattern2, *patterns)
-      NOT(XOR(pattern1, pattern2, *patterns))
-    end
-
     # @param pattern [Proc, Method, #===]
     # @return [Proc]
     def NOT(pattern)
