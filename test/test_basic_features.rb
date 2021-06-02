@@ -9,6 +9,7 @@ class TestBasicFeatures < Test::Unit::TestCase
   def test_OR
     pattern = Eqq.OR(42, 53, 64, 75)
     assert_lambda_signature(pattern)
+    assert_equal('OR(42, 53, 64, 75)', pattern.inspect)
 
     expectation_by_given_value = {
       42 => true,

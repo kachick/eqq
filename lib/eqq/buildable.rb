@@ -28,11 +28,21 @@ module Eqq
     # @param pattern2 [Proc, Method, #===]
     # @param patterns [Array<Proc, Method, #===>]
     # @return [Proc]
-    #   this lambda return true if match a any pattern
     def OR(pattern1, pattern2, *patterns)
-      ->v {
-        [pattern1, pattern2, *patterns].any? { |pattern| pattern === v }
+      patterns = [pattern1, pattern2, *patterns]
+      raise ArgumentError unless patterns.all? { |pattern| Eqq.valid?(pattern) }
+
+      product = ->v {
+        patterns.any? { |pattern| pattern === v }
       }
+
+      inspect = "OR(#{patterns.map { |pattern| Eqq.safe_inspect(pattern) }.join(', ')})"
+
+      product.define_singleton_method(:inspect) do
+        inspect
+      end
+
+      product
     end
 
     # @param pattern1 [Proc, Method, #===]
