@@ -94,12 +94,17 @@ module Eqq
 
     # @param pattern1 [Proc, Method, #===]
     # @param pattern2 [Proc, Method, #===]
-    # @param patterns [Array<Proc, Method, #===>]
     # @return [Proc]
-    def XOR(pattern1, pattern2, *patterns)
-      ->v {
-        [pattern1, pattern2, *patterns].one? { |pattern| pattern === v }
+    def XOR(pattern1, pattern2)
+      patterns = [pattern1, pattern2]
+      Buildable.validate_patterns(*patterns)
+
+      product = ->v {
+        patterns.one? { |pattern| pattern === v }
       }
+      Buildable.set_inspect(name: 'XOR', product: product, arguments: patterns)
+
+      product
     end
 
     # @param pattern [Proc, Method, #===]

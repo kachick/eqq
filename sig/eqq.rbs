@@ -30,7 +30,7 @@ module Eqq
     def AND: (_Patternable, _Patternable, *_Patternable) -> product
     def NAND: (_Patternable, _Patternable, *_Patternable) -> product
     def NOR: (_Patternable, _Patternable, *_Patternable) -> product
-    def XOR: (_Patternable, _Patternable, *_Patternable) -> product
+    def XOR: (_Patternable, _Patternable) -> product
     def NOT: (_Patternable) -> product
     def EQ: (untyped object) -> product
     def SAME: (untyped object) -> product

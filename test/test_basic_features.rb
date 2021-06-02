@@ -82,6 +82,38 @@ class TestBasicFeatures < Test::Unit::TestCase
     assert_lambda_signature(Eqq.NOR(42, 53))
   end
 
+  def test_XOR
+    pattern = Eqq.XOR(/\d/, Symbol)
+    assert_lambda_signature(pattern)
+    assert_equal('XOR(/\d/, Symbol)', pattern.inspect)
+
+    expectation_by_given_value = {
+      'foo42bar' => true,
+      :foo42bar => false,
+      42 => false,
+      :foobar => true,
+      :foo42baz => false,
+      nil => false,
+      Object.new => false
+    }
+
+    expectation_by_given_value.each_pair do |given, expectation|
+      assert_equal(expectation, pattern === given, "given: #{given}")
+    end
+
+    assert_raises(ArgumentError) do
+      Eqq.XOR()
+    end
+
+    assert_raises(ArgumentError) do
+      Eqq.XOR(42)
+    end
+
+    assert_raises(ArgumentError) do
+      Eqq.XOR(42, 43, 44)
+    end
+  end
+
   def test_AND
     pattern = Eqq.AND(/\d/, Symbol, /bar/)
     assert_lambda_signature(pattern)
