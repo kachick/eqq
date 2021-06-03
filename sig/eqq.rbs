@@ -1,3 +1,4 @@
+# Pattern objects builder
 module Eqq
   interface _Patternable
     def ===: (untyped object) -> bool
@@ -33,28 +34,59 @@ module Eqq
     # A private API. Should not be used in your code.
     def self.validate_patterns: (*untyped) -> void
 
+    # Product returns `true` when matched even one pattern
     def OR: (_Patternable, _Patternable, *_Patternable) -> product
+
+    # Product returns `true` when matched all patterns
     def AND: (_Patternable, _Patternable, *_Patternable) -> product
+
+    # Product is an inverted `AND`
     def NAND: (_Patternable, _Patternable, *_Patternable) -> product
+
+    # Product is an inverted `OR`
     def NOR: (_Patternable, _Patternable, *_Patternable) -> product
+
+    # Product returns `true` when matched one of the pattern, when matched both returns `false`
     def XOR: (_Patternable, _Patternable) -> product
+
+    # Product returns `true` when not matched the pattern
     def NOT: (_Patternable) -> product
+
+    # Product returns `true` when matched with `#==`
     def EQ: (untyped object) -> product
+
+    # Product returns `true` when matched with `#equal?`
     def SAME: (untyped object) -> product
+
+    # Product returns `true` when it has all of the methods (checked with `respond_to?`)
     def CAN: (_ToSym, *_ToSym) -> product
+
+    # Product returns `true` when the pattern raises the exception
     def RESCUE: (Module, _Patternable) -> product
+
+    # Product returns `true` when all patterns did not raise any exception
     def QUIET: (_Patternable, *_Patternable) -> product
+
+    # Basically provided for Enumerable
     def SEND: (Symbol | String name, _Patternable) -> product
+
+    # Product returns `true`, always `true`
     def ANYTHING: () -> product
+
+    # Product returns `false`, always `false`
     def NEVER: () -> product
+
+    # Product returns `true` when matched to `true` or `false`
     def BOOLEAN: () -> product
   end
 
   extend Buildable
 
+  # Base error of this library
   class Error < StandardError
   end
 
+  # Raised when found some products are invalid as a pattern object
   class InvalidProductError < Error
   end
 
@@ -65,6 +97,9 @@ module Eqq
 
   VERSION: String
 
+  # Returns `true` when given object has patternable signature
   def self.valid?: (untyped object) -> bool
+
+  # In the block scope, all builder methods can be used without receiver
   def self.define:  { () -> _Patternable } -> _Patternable
 end
