@@ -414,6 +414,17 @@ class TestBasicFeatures < Test::Unit::TestCase
     assert_equal(true, pattern === BasicObject.new)
   end
 
+  def test_NEVER
+    pattern = Eqq.NEVER
+    assert_lambda_signature(pattern)
+    assert_equal('NEVER()', pattern.inspect)
+
+    [42, nil, false, true, 'string', Object.new, [], {}].each do |given|
+      assert_equal(false, pattern === given, "given: #{given}")
+    end
+    assert_equal(false, pattern === BasicObject.new)
+  end
+
   def test_valid?
     expectation_by_given_value = {
       ->{} => false,

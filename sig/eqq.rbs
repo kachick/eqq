@@ -19,6 +19,9 @@ module Eqq
     ANYTHING: product
 
     # A private constant. Should not be used in your code.
+    NEVER: product
+
+    # A private constant. Should not be used in your code.
     BOOLEAN: product
 
     # A private API. Should not be used in your code.
@@ -43,6 +46,7 @@ module Eqq
     def QUIET: (_Patternable, *_Patternable) -> product
     def SEND: (Symbol | String name, _Patternable) -> product
     def ANYTHING: () -> product
+    def NEVER: () -> product
     def BOOLEAN: () -> product
   end
 

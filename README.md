@@ -108,6 +108,7 @@ Reuse as you wish!
 * SEND(name, pattern) / {Eqq::Buildable#SEND} - Basically provided for Enumerable
 * BOOLEAN() / {Eqq::Buildable#BOOLEAN} - Product returns `true` when matched to `true` or `false`
 * ANYTHING() / {Eqq::Buildable#ANYTHING} - Product returns `true`, always `true`
+* NEVER() / {Eqq::Buildable#NEVER} - Product returns `false`, always `false`
 * XOR(pattern1, pattern2) / {Eqq::Buildable#XOR} - Product returns `true` when matched one of the pattern, when matched both returns `false`
 * NAND(*patterns) / {Eqq::Buildable#NAND} - Product is inverted {Eqq::Buildable#AND}
 * NOR(*patterns) / {Eqq::Buildable#NOR} - Product is inverted {Eqq::Buildable#OR}

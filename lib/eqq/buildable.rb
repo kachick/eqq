@@ -267,6 +267,17 @@ module Eqq
       ANYTHING
     end
 
+    NEVER = ->_v { false }
+    set_inspect(name: 'NEVER', product: NEVER, arguments: [])
+    private_constant :NEVER
+
+    # Product returns `false`, always `false`
+    #
+    # @return [Proc]
+    def NEVER
+      NEVER
+    end
+
     BOOLEAN = ->v { true.equal?(v) || false.equal?(v) }
     set_inspect(name: 'BOOLEAN', product: BOOLEAN, arguments: [])
     private_constant :BOOLEAN
