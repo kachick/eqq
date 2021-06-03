@@ -11,7 +11,7 @@ module Eqq
 
       # @api private
       # @return [String]
-      def safe_inspect(object)
+      def safe_inspect_for(object)
         String.try_convert(object.inspect) || INSPECTION_FALLBACK
       rescue Exception
         # This implementation used `RSpec::Support::ObjectFormatter::UninspectableObjectInspector` as a reference, thank you!
@@ -28,8 +28,8 @@ module Eqq
 
       # @api private
       # @return [void]
-      def set_inspect(name:, product:, arguments:)
-        inspect = "#{name}(#{arguments.map { |argument| safe_inspect(argument) }.join(', ')})".freeze
+      def define_inspect_on(product, name:, arguments:)
+        inspect = "#{name}(#{arguments.map { |argument| safe_inspect_for(argument) }.join(', ')})".freeze
         product.define_singleton_method(:inspect) do
           inspect
         end
@@ -39,7 +39,7 @@ module Eqq
       # @return [void]
       def validate_patterns(*patterns)
         invalids = patterns.reject { |pattern| Eqq.valid?(pattern) }
-        invalid_inspections = invalids.map { |invalid| safe_inspect(invalid) }.join(', ')
+        invalid_inspections = invalids.map { |invalid| safe_inspect_for(invalid) }.join(', ')
         raise ArgumentError, "given `#{invalid_inspections}` are invalid as pattern objects" unless invalids.empty?
       end
     end
@@ -58,7 +58,7 @@ module Eqq
         patterns.all? { |pattern| pattern === v }
       }
 
-      Buildable.set_inspect(name: 'AND', product: product, arguments: patterns)
+      Buildable.define_inspect_on(product, name: 'AND', arguments: patterns)
 
       product
     end
@@ -86,7 +86,7 @@ module Eqq
       product = ->v {
         patterns.any? { |pattern| pattern === v }
       }
-      Buildable.set_inspect(name: 'OR', product: product, arguments: patterns)
+      Buildable.define_inspect_on(product, name: 'OR', arguments: patterns)
 
       product
     end
@@ -113,7 +113,7 @@ module Eqq
       product = ->v {
         patterns.one? { |pattern| pattern === v }
       }
-      Buildable.set_inspect(name: 'XOR', product: product, arguments: patterns)
+      Buildable.define_inspect_on(product, name: 'XOR', arguments: patterns)
 
       product
     end
@@ -127,7 +127,7 @@ module Eqq
 
       product = ->v { !(pattern === v) }
 
-      Buildable.set_inspect(name: 'NOT', product: product, arguments: [pattern])
+      Buildable.define_inspect_on(product, name: 'NOT', arguments: [pattern])
 
       product
     end
@@ -137,9 +137,9 @@ module Eqq
     # @param obj [#==]
     # @return [Proc]
     def EQ(obj)
-      ->v { obj == v }.tap do |product|
-        Buildable.set_inspect(name: 'EQ', product: product, arguments: [obj])
-      end
+      product = ->v { obj == v }
+      Buildable.define_inspect_on(product, name: 'EQ', arguments: [obj])
+      product
     end
 
     # Product returns `true` when matched with `#equal?`
@@ -147,9 +147,9 @@ module Eqq
     # @param obj [#equal?]
     # @return [Proc]
     def SAME(obj)
-      ->v { obj.equal?(v) }.tap do |product|
-        Buildable.set_inspect(name: 'SAME', product: product, arguments: [obj])
-      end
+      product = ->v { obj.equal?(v) }
+      Buildable.define_inspect_on(product, name: 'SAME', arguments: [obj])
+      product
     end
 
     # Product returns `true` when it has all of the methods (checked with `respond_to?`)
@@ -176,7 +176,7 @@ module Eqq
         }
       }
 
-      Buildable.set_inspect(name: 'CAN', product: product, arguments: messages)
+      Buildable.define_inspect_on(product, name: 'CAN', arguments: messages)
 
       product
     end
@@ -202,7 +202,7 @@ module Eqq
         }
       }
 
-      Buildable.set_inspect(name: 'QUIET', product: product, arguments: patterns)
+      Buildable.define_inspect_on(product, name: 'QUIET', arguments: patterns)
 
       product
     end
@@ -227,7 +227,7 @@ module Eqq
         end
       }
 
-      Buildable.set_inspect(name: 'RESCUE', product: product, arguments: [mod, pattern])
+      Buildable.define_inspect_on(product, name: 'RESCUE', arguments: [mod, pattern])
 
       product
     end
@@ -251,13 +251,13 @@ module Eqq
         v.__send__(name, pattern)
       }
 
-      Buildable.set_inspect(name: 'SEND', product: product, arguments: [name, pattern])
+      Buildable.define_inspect_on(product, name: 'SEND', arguments: [name, pattern])
 
       product
     end
 
     ANYTHING = ->_v { true }
-    set_inspect(name: 'ANYTHING', product: ANYTHING, arguments: [])
+    define_inspect_on(ANYTHING, name: 'ANYTHING', arguments: [])
     private_constant :ANYTHING
 
     # Product returns `true`, always `true`
@@ -268,7 +268,7 @@ module Eqq
     end
 
     NEVER = ->_v { false }
-    set_inspect(name: 'NEVER', product: NEVER, arguments: [])
+    define_inspect_on(NEVER, name: 'NEVER', arguments: [])
     private_constant :NEVER
 
     # Product returns `false`, always `false`
@@ -279,7 +279,7 @@ module Eqq
     end
 
     BOOLEAN = ->v { true.equal?(v) || false.equal?(v) }
-    set_inspect(name: 'BOOLEAN', product: BOOLEAN, arguments: [])
+    define_inspect_on(BOOLEAN, name: 'BOOLEAN', arguments: [])
     private_constant :BOOLEAN
 
     # Product returns `true` when matched to `true` or `false`

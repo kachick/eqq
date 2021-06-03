@@ -25,10 +25,10 @@ module Eqq
     BOOLEAN: product
 
     # A private API. Should not be used in your code.
-    def self.safe_inspect: (untyped object)-> String
+    def self.safe_inspect_for: (untyped object)-> String
 
     # A private API. Should not be used in your code.
-    def self.set_inspect: (name: String, product: patternable_lambda, arguments: Array[untyped])-> void
+    def self.define_inspect_on: (patternable_lambda product, name: String, arguments: Array[untyped])-> void
 
     # A private API. Should not be used in your code.
     def self.validate_patterns: (*untyped) -> void
