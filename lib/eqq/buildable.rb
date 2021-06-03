@@ -257,7 +257,7 @@ module Eqq
     end
 
     ANYTHING = ->_v { true }
-    Buildable.set_inspect(name: 'ANYTHING', product: ANYTHING, arguments: [])
+    set_inspect(name: 'ANYTHING', product: ANYTHING, arguments: [])
     private_constant :ANYTHING
 
     # Product returns `true`, always `true`
@@ -268,7 +268,7 @@ module Eqq
     end
 
     BOOLEAN = ->v { true.equal?(v) || false.equal?(v) }
-    Buildable.set_inspect(name: 'BOOLEAN', product: BOOLEAN, arguments: [])
+    set_inspect(name: 'BOOLEAN', product: BOOLEAN, arguments: [])
     private_constant :BOOLEAN
 
     # Product returns `true` when matched to `true` or `false`
