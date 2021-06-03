@@ -65,9 +65,6 @@ module Eqq
 
   VERSION: String
 
-  # A private constant. Should not be used in your code.
-  INSPECTION_FALLBACK: String
-
   def self.valid?: (untyped object) -> bool
   def self.define:  { () -> _Patternable } -> _Patternable
 end
