@@ -97,27 +97,27 @@ Reuse as you wish!
 
 ### Builders
 
-* OR(*patterns) / {Eqq::Buildable#OR} - Product returns `true` when matched even one pattern
-* AND(*patterns) / {Eqq::Buildable#AND} - Product returns `true` when matched all patterns
-* NOT(pattern) / {Eqq::Buildable#NOT} - Product returns `true` when not matched the pattern
-* CAN(*method_names) / {Eqq::Buildable#CAN} - Product returns `true` when it has all of the methods (checked with `respond_to?`)
-* RESCUE(exception_class/module, pattern) / {Eqq::Buildable#RESCUE} - Product returns `true` when the pattern raises the exception
-* QUIET(*patterns) / {Eqq::Buildable#QUIET} - Product returns `true` when all patterns did not raise any exception
-* EQ(object) / {Eqq::Buildable#EQ} - Product returns `true` when matched with `#==`
-* SAME(object) / {Eqq::Buildable#SAME} - Product returns `true` when matched with `#equal?`
-* SEND(name, pattern) / {Eqq::Buildable#SEND} - Basically provided for Enumerable
-* BOOLEAN() / {Eqq::Buildable#BOOLEAN} - Product returns `true` when matched to `true` or `false`
-* ANYTHING() / {Eqq::Buildable#ANYTHING} - Product returns `true`, always `true`
-* NEVER() / {Eqq::Buildable#NEVER} - Product returns `false`, always `false`
-* XOR(pattern1, pattern2) / {Eqq::Buildable#XOR} - Product returns `true` when matched one of the pattern, when matched both returns `false`
-* NAND(*patterns) / {Eqq::Buildable#NAND} - Product is inverted {Eqq::Buildable#AND}
-* NOR(*patterns) / {Eqq::Buildable#NOR} - Product is inverted {Eqq::Buildable#OR}
+* OR(*patterns) - Product returns `true` when matched even one pattern
+* AND(*patterns) - Product returns `true` when matched all patterns
+* NOT(pattern) - Product returns `true` when not matched the pattern
+* CAN(*method_names) - Product returns `true` when it has all of the methods (checked with `respond_to?`)
+* RESCUE(exception_class/module, pattern) - Product returns `true` when the pattern raises the exception
+* QUIET(*patterns) - Product returns `true` when all patterns did not raise any exception
+* EQ(object) - Product returns `true` when matched with `#==`
+* SAME(object) - Product returns `true` when matched with `#equal?`
+* SEND(name, pattern) - Basically provided for Enumerable
+* BOOLEAN() - Product returns `true` when matched to `true` or `false`
+* ANYTHING() - Product returns `true`, always `true`
+* NEVER() - Product returns `false`, always `false`
+* XOR(pattern1, pattern2) - Product returns `true` when matched one of the pattern, when matched both returns `false`
+* NAND(*patterns) - Product is an inverted `AND`
+* NOR(*patterns) - Product is an inverted `OR`
 
 ### Additional information
 
 When you feel annoy to write `Eqq` in many place, 2 ways exist.
 
-* `Eqq.define` - In the block scope, all builder methods can be used without receiver
+* `Eqq.define(&block)` - In the block scope, all builder methods can be used without receiver
 * `include Eqq::Buildable` - In the class/module, all builders can be used as own method
 
 This gem provides [ruby/rbs](https://github.com/ruby/rbs) signatures

@@ -63,7 +63,7 @@ module Eqq
       product
     end
 
-    # Product is inverted {#AND}
+    # Product is an inverted {#AND}
     #
     # @param pattern1 [Proc, Method, #===]
     # @param pattern2 [Proc, Method, #===]
@@ -91,7 +91,7 @@ module Eqq
       product
     end
 
-    # Product is inverted {#OR}
+    # Product is an inverted {#OR}
     #
     # @param pattern1 [Proc, Method, #===]
     # @param pattern2 [Proc, Method, #===]
