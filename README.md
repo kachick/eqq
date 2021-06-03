@@ -63,6 +63,15 @@ ret_in_case = (
 )
 
 p ret_in_case #=> Should be matched here! :)
+
+class MyClass
+  include Eqq::Buildable
+
+  def example
+    [4.2, 42, 42.0, 420].grep(OR(AND(Float, 20..50), Integer))
+  end
+end
+MyClass.new.example #=> [42, 42.0, 420]
 ```
 
 ### Explanation
@@ -86,34 +95,36 @@ They can take this interface as the `pattern`.
 And you already saw. All of patterns can be mixed with other patterns as a parts.
 Reuse as you wish!
 
-Major builders as below
+### Builders
 
-* OR(*patterns) - Product returns true when matched even one pattern
-* AND(*patterns) - Product returns true when matched all patterns
-* NOT(pattern) - Product returns true when not matched the pattern
-* CAN(*method_names) - Product returns true when it has all of the methods (checked with `respond_to?`)
-* RESCUE(exception_class/module, pattern) - Product returns true when the pattern raises the exception
-* QUIET(*patterns) - Product returns true when all patterns did not raise any exception
-* EQ(object) - Product returns true when matched with `#==`
-* SAME(object) - Product returns true when matched with `#equal?`
-* SEND(name, pattern) - Basically provided for Enumerable
-* BOOLEAN() - Product returns true when matched to true or false
-* ANYTHING() - Product returns true, always true
+* OR(*patterns) / {Eqq::Buildable#OR} - Product returns `true` when matched even one pattern
+* AND(*patterns) / {Eqq::Buildable#AND} - Product returns `true` when matched all patterns
+* NOT(pattern) / {Eqq::Buildable#NOT} - Product returns `true` when not matched the pattern
+* CAN(*method_names) / {Eqq::Buildable#CAN} - Product returns `true` when it has all of the methods (checked with `respond_to?`)
+* RESCUE(exception_class/module, pattern) / {Eqq::Buildable#RESCUE} - Product returns `true` when the pattern raises the exception
+* QUIET(*patterns) / {Eqq::Buildable#QUIET} - Product returns `true` when all patterns did not raise any exception
+* EQ(object) / {Eqq::Buildable#EQ} - Product returns `true` when matched with `#==`
+* SAME(object) / {Eqq::Buildable#SAME} - Product returns `true` when matched with `#equal?`
+* SEND(name, pattern) / {Eqq::Buildable#SEND} - Basically provided for Enumerable
+* BOOLEAN() / {Eqq::Buildable#BOOLEAN} - Product returns `true` when matched to `true` or `false`
+* ANYTHING() / {Eqq::Buildable#ANYTHING} - Product returns `true`, always `true`
+* XOR(pattern1, pattern2) / {Eqq::Buildable#XOR} - Product returns `true` when matched one of the pattern, when matched both returns `false`
+* NAND(*patterns) / {Eqq::Buildable#NAND} - Product is inverted {Eqq::Buildable#AND}
+* NOR(*patterns) / {Eqq::Buildable#NOR} - Product is inverted {Eqq::Buildable#OR}
 
-Minor builders as below, please see [API documents](https://kachick.github.io/eqq) for them.
+### Additional information
 
-* NAND
-* NOR
-* XOR
+When you feel annoy to write `Eqq` in many place, 2 ways exist.
 
-When you feel annoy to write `Eqq` in many place, please use `Eqq.define`.
-In the block scope, all builder methods can be used without receiver specifying.
+* `Eqq.define` - In the block scope, all builder methods can be used without receiver
+* `include Eqq::Buildable` - In the class/module, all builders can be used as own method
 
-This gem provide [ruby/rbs](https://github.com/ruby/rbs) signature
+This gem provides [ruby/rbs](https://github.com/ruby/rbs) signatures
 
 ## Links
 
 * [Repository](https://github.com/kachick/eqq)
+* [API documents](https://kachick.github.io/eqq)
 
 ## NOTE
 

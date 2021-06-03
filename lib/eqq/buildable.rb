@@ -44,6 +44,8 @@ module Eqq
       end
     end
 
+    # Product returns `true` when matched all patterns
+    #
     # @param pattern1 [Proc, Method, #===]
     # @param pattern2 [Proc, Method, #===]
     # @param patterns [Array<Proc, Method, #===>]
@@ -61,6 +63,8 @@ module Eqq
       product
     end
 
+    # Product is inverted {#AND}
+    #
     # @param pattern1 [Proc, Method, #===]
     # @param pattern2 [Proc, Method, #===]
     # @param patterns [Array<Proc, Method, #===>]
@@ -69,6 +73,8 @@ module Eqq
       NOT(AND(pattern1, pattern2, *patterns))
     end
 
+    # Product returns `true` when matched even one pattern
+    #
     # @param pattern1 [Proc, Method, #===]
     # @param pattern2 [Proc, Method, #===]
     # @param patterns [Array<Proc, Method, #===>]
@@ -85,6 +91,8 @@ module Eqq
       product
     end
 
+    # Product is inverted {#OR}
+    #
     # @param pattern1 [Proc, Method, #===]
     # @param pattern2 [Proc, Method, #===]
     # @param patterns [Array<Proc, Method, #===>]
@@ -93,6 +101,8 @@ module Eqq
       NOT(OR(pattern1, pattern2, *patterns))
     end
 
+    # Product returns `true` when matched one of the pattern, when matched both returns `false`
+    #
     # @param pattern1 [Proc, Method, #===]
     # @param pattern2 [Proc, Method, #===]
     # @return [Proc]
@@ -108,6 +118,8 @@ module Eqq
       product
     end
 
+    # Product returns `true` when not matched the pattern
+    #
     # @param pattern [Proc, Method, #===]
     # @return [Proc]
     def NOT(pattern)
@@ -120,6 +132,8 @@ module Eqq
       product
     end
 
+    # Product returns `true` when matched with `#==`
+    #
     # @param obj [#==]
     # @return [Proc]
     def EQ(obj)
@@ -128,6 +142,8 @@ module Eqq
       end
     end
 
+    # Product returns `true` when matched with `#equal?`
+    #
     # @param obj [#equal?]
     # @return [Proc]
     def SAME(obj)
@@ -136,6 +152,8 @@ module Eqq
       end
     end
 
+    # Product returns `true` when it has all of the methods (checked with `respond_to?`)
+    #
     # @param message1 [Symbol, String, #to_sym]
     # @param messages [Array<Symbol, String, #to_sym>]
     # @return [Proc]
@@ -163,6 +181,8 @@ module Eqq
       product
     end
 
+    # Product returns `true` when all patterns did not raise any exception
+    #
     # @param pattern1 [Proc, Method, #===]
     # @param patterns [Array<Proc, Method, #===>]
     # @return [Proc]
@@ -187,6 +207,8 @@ module Eqq
       product
     end
 
+    # Product returns `true` when the pattern raises the exception
+    #
     # @param mod [Module]
     # @param pattern [Proc, Method, #===]
     # @return [Proc]
@@ -210,6 +232,8 @@ module Eqq
       product
     end
 
+    # Basically provided for Enumerable
+    #
     # @param name [Symbol, String, #to_sym]
     # @param pattern [Proc, Method, #===]
     # @return [Proc]
@@ -236,7 +260,9 @@ module Eqq
     Buildable.set_inspect(name: 'ANYTHING', product: ANYTHING, arguments: [])
     private_constant :ANYTHING
 
-    # @return [ANYTHING]
+    # Product returns `true`, always `true`
+    #
+    # @return [Proc]
     def ANYTHING
       ANYTHING
     end
@@ -245,7 +271,9 @@ module Eqq
     Buildable.set_inspect(name: 'BOOLEAN', product: BOOLEAN, arguments: [])
     private_constant :BOOLEAN
 
-    # @return [BOOLEAN]
+    # Product returns `true` when matched to `true` or `false`
+    #
+    # @return [Proc]
     def BOOLEAN
       BOOLEAN
     end

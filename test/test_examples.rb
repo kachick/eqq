@@ -4,6 +4,14 @@
 require_relative 'helper'
 
 class TestExamples < Test::Unit::TestCase
+  class ExampleClassForIncludingBuildable
+    include Eqq::Buildable
+
+    def example
+      [4.2, 42, 42.0, 420].grep(OR(AND(Float, 20..50), Integer))
+    end
+  end
+
   def test_examples
     assert_equal([42], [4.2, 42, 42.0, 420].grep(Eqq.AND(Integer, 20..50)))
 
@@ -47,5 +55,7 @@ class TestExamples < Test::Unit::TestCase
       end
     )
     assert_equal('Should be matched here! :)', ret_in_case)
+
+    assert_equal([42, 42.0, 420], ExampleClassForIncludingBuildable.new.example)
   end
 end
