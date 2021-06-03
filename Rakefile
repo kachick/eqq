@@ -23,7 +23,7 @@ Rake::TestTask.new(:test) do |tt|
   tt.warning = true
 end
 
-task validate_signatures: [:test_yard, :'signature:validate']
+multitask validate_signatures: [:test_yard, :'signature:validate']
 
 namespace :signature do
   task :validate do
