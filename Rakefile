@@ -27,7 +27,7 @@ task validate_signatures: [:test_yard, :'signature:validate']
 
 namespace :signature do
   task :validate do
-    sh 'bundle exec rbs -rsecurerandom -rmonitor -I sig validate'
+    sh 'bundle exec rbs -I sig validate'
   end
 
   task :check_false_positive do
