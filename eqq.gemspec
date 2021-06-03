@@ -7,9 +7,15 @@ require_relative './lib/eqq/version'
 repository_url = "https://github.com/kachick/#{lib_name}"
 
 Gem::Specification.new do |gem|
-  gem.summary       = %q{Pattern objects builder. `eqq` means `#===`}
+  gem.summary       = %q{Pattern objects builder}
   gem.description   = <<-'DESCRIPTION'
-    [4.2, 42, 42.0, 420].grep(Eqq.AND(Integer, 20..50)) #=> [42]
+    Pattern objects builder.
+
+    All products can be used as `pattern === something`.
+
+    All products can be mixed with other products as a parts.
+
+    Reuse as you wish!
   DESCRIPTION
   gem.homepage      = repository_url
   gem.license       = 'MIT'
