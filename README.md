@@ -135,7 +135,7 @@ end
 
 ### Use builders without receiver specifying
 
-When you feel annoy to write `Eqq` in many place, 2 ways exist.
+When you felt annoy to write `Eqq` in many place, some ways exist.
 
 * `Eqq.define(&block)` - In the block scope, all builder methods can be used without receiver
 * `extend Eqq::Buildable` - In the class/module, all builders can be used as class methods
