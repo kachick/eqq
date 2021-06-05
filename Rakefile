@@ -3,6 +3,7 @@
 require 'bundler/gem_tasks'
 
 require 'rake/testtask'
+require 'rspec/core/rake_task'
 
 begin
   require 'rubocop/rake_task'
@@ -13,7 +14,7 @@ else
 end
 
 task default: [:test_behaviors]
-task test_behaviors: [:test]
+task test_behaviors: [:test, :spec]
 
 multitask simulate_ci: [:test_behaviors, :validate_signatures, :rubocop]
 
@@ -21,6 +22,10 @@ Rake::TestTask.new(:test) do |tt|
   tt.pattern = 'test/**/test_*.rb'
   tt.verbose = true
   tt.warning = true
+end
+
+RSpec::Core::RakeTask.new(:spec) do |rt|
+  rt.ruby_opts = %w[-w]
 end
 
 multitask validate_signatures: [:test_yard, :'signature:validate']

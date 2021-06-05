@@ -113,14 +113,37 @@ Reuse as you wish!
 * NAND(*patterns) - Product is an inverted `AND`
 * NOR(*patterns) - Product is an inverted `OR`
 
-### Additional information
+### Best fit for RSpec's `satisfy` matcher too
+
+All builders actually generate a `Proc (lambda)` instance.
+The signature will fit for RSpec's built-in [`satisfy` matcher](https://relishapp.com/rspec/rspec-expectations/v/3-10/docs/built-in-matchers/satisfy-matcher) too.
+
+```ruby
+RSpec.describe RSpec::Matchers::BuiltIn::Satisfy do
+  let(:product) { Eqq.AND(Integer, 24..42) }
+
+  it 'perfectly works' do
+    expect(23).not_to satisfy(&product)
+    expect(24).to satisfy(&product)
+    expect(24.0).not_to satisfy(&product)
+    expect(42).to satisfy(&product)
+    expect(42.0).not_to satisfy(&product)
+    expect(43).not_to satisfy(&product)
+  end
+end
+```
+
+### Use builders without receiver specifying
 
 When you feel annoy to write `Eqq` in many place, 2 ways exist.
 
 * `Eqq.define(&block)` - In the block scope, all builder methods can be used without receiver
-* `include Eqq::Buildable` - In the class/module, all builders can be used as own method
+* `extend Eqq::Buildable` - In the class/module, all builders can be used as class methods
+* `include Eqq::Buildable` - In the class/module, all builders can be used as instance methods
 
-This gem provides [ruby/rbs](https://github.com/ruby/rbs) signatures
+### Signature
+
+* This gem provides [ruby/rbs](https://github.com/ruby/rbs) signature file
 
 ## Links
 
