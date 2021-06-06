@@ -256,48 +256,46 @@ module Eqq
       product
     end
 
-    ANYTHING = ->_v { true }
-    define_inspect_on(ANYTHING, name: 'ANYTHING', arguments: [])
-    private_constant :ANYTHING
+    EQQ_BUILTIN_ANYTHING = ->_v { true }
+    define_inspect_on(EQQ_BUILTIN_ANYTHING, name: 'ANYTHING', arguments: [])
 
     # Product returns `true`, always `true`
     #
     # @return [Proc]
     def ANYTHING
-      ANYTHING
+      EQQ_BUILTIN_ANYTHING
     end
 
-    NEVER = ->_v { false }
-    define_inspect_on(NEVER, name: 'NEVER', arguments: [])
-    private_constant :NEVER
+    EQQ_BUILTIN_NEVER = ->_v { false }
+    define_inspect_on(EQQ_BUILTIN_NEVER, name: 'NEVER', arguments: [])
 
     # Product returns `false`, always `false`
     #
     # @return [Proc]
     def NEVER
-      NEVER
+      EQQ_BUILTIN_NEVER
     end
 
-    BOOLEAN = ->v { true.equal?(v) || false.equal?(v) }
-    define_inspect_on(BOOLEAN, name: 'BOOLEAN', arguments: [])
-    private_constant :BOOLEAN
+    EQQ_BUILTIN_BOOLEAN = ->v { true.equal?(v) || false.equal?(v) }
+    define_inspect_on(EQQ_BUILTIN_BOOLEAN, name: 'BOOLEAN', arguments: [])
 
     # Product returns `true` when matched to `true` or `false`
     #
     # @return [Proc]
     def BOOLEAN
-      BOOLEAN
+      EQQ_BUILTIN_BOOLEAN
     end
 
-    NIL = ->v { nil.equal?(v) }
-    define_inspect_on(NIL, name: 'NIL', arguments: [])
-    private_constant :NIL
+    EQQ_BUILTIN_NIL = ->v { nil.equal?(v) }
+    define_inspect_on(EQQ_BUILTIN_NIL, name: 'NIL', arguments: [])
 
     # Product returns `true` when matched to `nil` (Not consider `nil?`)
     #
     # @return [Proc]
     def NIL
-      NIL
+      EQQ_BUILTIN_NIL
     end
+
+    private_constant :EQQ_BUILTIN_ANYTHING, :EQQ_BUILTIN_NEVER, :EQQ_BUILTIN_BOOLEAN, :EQQ_BUILTIN_NIL
   end
 end

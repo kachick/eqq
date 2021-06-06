@@ -17,16 +17,16 @@ module Eqq
     type product = patternable_lambda & _Inspectable
 
     # A private constant. Should not be used in your code.
-    ANYTHING: product
+    EQQ_BUILTIN_ANYTHING: product
 
     # A private constant. Should not be used in your code.
-    NEVER: product
+    EQQ_BUILTIN_NEVER: product
 
     # A private constant. Should not be used in your code.
-    BOOLEAN: product
+    EQQ_BUILTIN_BOOLEAN: product
 
     # A private constant. Should not be used in your code.
-    NIL: product
+    EQQ_BUILTIN_NIL: product
 
     # A private API. Should not be used in your code.
     def self.safe_inspect_for: (untyped object)-> String
