@@ -3,7 +3,7 @@
 
 require_relative 'helper'
 
-class TestBasicFeatures < Test::Unit::TestCase
+class TestBuilders < Test::Unit::TestCase
   include EqqAssertions
 
   def test_OR

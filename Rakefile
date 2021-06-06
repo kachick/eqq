@@ -23,12 +23,13 @@ multitask simulate_ci: [:test_behaviors, :validate_signatures, :rubocop]
 
 Rake::TestTask.new(:test) do |tt|
   tt.pattern = 'test/**/test_*.rb'
-  tt.verbose = true
   tt.warning = true
+  tt.verbose = false
 end
 
 RSpec::Core::RakeTask.new(:spec) do |rt|
   rt.ruby_opts = %w[-w]
+  rt.verbose = false
 end
 
 desc 'Validate signatures, this should be passed'

@@ -4,7 +4,7 @@
 require_relative 'helper'
 
 class TestConstants < Test::Unit::TestCase
-  def test_constant_version
+  def test_version
     assert do
       Eqq::VERSION.instance_of?(String)
     end
