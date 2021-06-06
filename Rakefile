@@ -14,6 +14,8 @@ else
 end
 
 task default: [:test_behaviors]
+
+desc 'Test behaviors, this should be passed'
 task test_behaviors: [:test, :spec]
 
 desc 'Simulate CI results in local machine as possible'
@@ -29,6 +31,7 @@ RSpec::Core::RakeTask.new(:spec) do |rt|
   rt.ruby_opts = %w[-w]
 end
 
+desc 'Validate signatures, this should be passed'
 multitask validate_signatures: [:'signature:validate_yard', :'signature:validate_rbs']
 
 namespace :signature do
