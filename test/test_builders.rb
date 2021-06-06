@@ -43,10 +43,9 @@ class TestBasicFeatures < Test::Unit::TestCase
     class << evil
       undef_method :===
     end
-    err = assert_raises(ArgumentError) do
+    assert_raise_with_message(ArgumentError, /given `\[\], #<BasicObject\S+` are invalid as pattern objects/) do
       Eqq.OR(evil, 42, BasicObject.new)
     end
-    assert_match(/given `\[\], #<BasicObject\S+` are invalid as pattern objects/, err.message)
   end
 
   def test_NOR
@@ -390,9 +389,10 @@ class TestBasicFeatures < Test::Unit::TestCase
   end
 
   def test_BOOLEAN
-    pattern = Eqq.BOOLEAN
+    pattern = Eqq.BOOLEAN()
     assert_product_signature(pattern)
     assert_equal('BOOLEAN()', pattern.inspect)
+    assert_same(Eqq.BOOLEAN(), Eqq.BOOLEAN())
 
     [false, true].each do |given|
       assert_true(pattern === given, "given: #{given}")
@@ -403,10 +403,38 @@ class TestBasicFeatures < Test::Unit::TestCase
     assert_false(pattern === BasicObject.new)
   end
 
+  def test_NIL_signature
+    pattern = Eqq.NIL()
+    assert_product_signature(pattern)
+    assert_equal('NIL()', pattern.inspect)
+    assert_same(Eqq.NIL(), Eqq.NIL())
+
+    assert_raises(ArgumentError) do
+      Eqq.NIL(Integer)
+    end
+  end
+
+  data(
+    'When given `nil`' => [true, nil],
+    'When given object overwrites `#nil?` as truthy' => [false, Class.new { def nil?; true; end }.new],
+    'When given `false`' => [false, false],
+    'When given `0`' => [false, 0],
+    'When given empty collection' => [false, []],
+    'When given `true`' => [false, true],
+    'When given `42`' => [false, 42],
+    'When given a Object' => [false, Object.new],
+    'When given a BasicObject' => [false, BasicObject.new]
+  )
+  def test_NIL_for_typical_values(expected_and_given)
+    expected, given = *expected_and_given
+    assert_equal(expected, Eqq.NIL() === given)
+  end
+
   def test_ANYTHING
-    pattern = Eqq.ANYTHING
+    pattern = Eqq.ANYTHING()
     assert_product_signature(pattern)
     assert_equal('ANYTHING()', pattern.inspect)
+    assert_same(Eqq.ANYTHING(), Eqq.ANYTHING())
 
     [42, nil, false, true, 'string', Object.new, [], {}].each do |given|
       assert_true(pattern === given, "given: #{given}")
@@ -415,88 +443,14 @@ class TestBasicFeatures < Test::Unit::TestCase
   end
 
   def test_NEVER
-    pattern = Eqq.NEVER
+    pattern = Eqq.NEVER()
     assert_product_signature(pattern)
     assert_equal('NEVER()', pattern.inspect)
+    assert_same(Eqq.NEVER(), Eqq.NEVER())
 
     [42, nil, false, true, 'string', Object.new, [], {}].each do |given|
       assert_false(pattern === given, "given: #{given}")
     end
     assert_false(pattern === BasicObject.new)
-  end
-
-  def test_pattern?
-    expectation_by_given_value = {
-      ->{} => false,
-      ->x, y{} => false,
-      ->x {} => true,
-      Object.new => true,
-      Integer => true
-    }
-
-    expectation_by_given_value.each_pair do |given, expectation|
-      assert_equal(expectation, Eqq.pattern?(given), "given: #{given}")
-    end
-
-    assert_false(Eqq.pattern?(BasicObject.new))
-  end
-
-  def test_valid?
-    expectation_by_given_value = {
-      ->{} => false,
-      ->x, y{} => false,
-      ->x {} => true,
-      Object.new => true,
-      Integer => true
-    }
-
-    expectation_by_given_value.each_pair do |given, expectation|
-      assert_equal(expectation, Eqq.valid?(given), "given: #{given}")
-    end
-
-    assert_false(Eqq.valid?(BasicObject.new))
-  end
-
-  def test_define
-    builders = %i[
-      OR
-      AND
-      NAND
-      NOR
-      XOR
-      NOT
-      EQ
-      SAME
-      CAN
-      RESCUE
-      QUIET
-      SEND
-      ANYTHING
-      BOOLEAN
-    ]
-
-    assertion_scope = self
-
-    pattern = Eqq.define do
-      builders.each do |builder|
-        assertion_scope.assert_same(Eqq.method(builder).owner, method(builder).owner)
-      end
-
-      OR(42, String)
-    end
-    assert_product_signature(pattern)
-    assert_equal([42, 'string'], [42, nil, BasicObject.new, 'string'].grep(pattern))
-  end
-
-  data(
-    'When the object does not have #===' => BasicObject.new,
-    'When the object has #===, but it is not a Proc' => Integer,
-    'When the object is Proc, but it takes shortage of arguments' => -> {true},
-    'When the object is Proc, but it takes excess of arguments' => ->_v1, _v2 {true}
-  )
-  def test_define_raises_exceptions_for_unexpected_operations(result)
-    assert_raises(Eqq::InvalidProductError) do
-      Eqq.define { result }
-    end
   end
 end

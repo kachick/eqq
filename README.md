@@ -12,7 +12,7 @@ Require Ruby 2.6 or later
 Add below code into your Gemfile
 
 ```ruby
-gem 'eqq', '>= 0.0.6', '< 0.1.0'
+gem 'eqq', '>= 0.0.7', '< 0.1.0'
 ```
 
 ### Overview
@@ -24,7 +24,7 @@ require 'eqq'
 [42, nil, true, false, '', 0].grep(Eqq.BOOLEAN) #=> [true, false]
 [42, [], {}, 'string', Object.new, nil].grep(Eqq.CAN(:to_h)) #=> [[], {}, nil]
 
-pattern = Eqq.define do
+pattern = Eqq.build do
   OR(AND(Float, 20..50), Integer)
 end
 
@@ -107,6 +107,7 @@ Reuse as you wish!
 * SAME(object) - Product returns `true` when matched with `#equal?`
 * SEND(name, pattern) - Basically provided for Enumerable
 * BOOLEAN() - Product returns `true` when matched to `true` or `false`
+* NIL() - Product returns `true` when matched to `nil` (Not consider `nil?`)
 * ANYTHING() - Product returns `true`, always `true`
 * NEVER() - Product returns `false`, always `false`
 * XOR(pattern1, pattern2) - Product returns `true` when matched one of the pattern, when matched both returns `false`
@@ -137,7 +138,7 @@ end
 
 When you felt annoy to write `Eqq` in many place, some ways exist.
 
-* `Eqq.define(&block)` - In the block scope, all builder methods can be used without receiver
+* `Eqq.build(&block)` - In the block scope, all builder methods can be used without receiver
 * `extend Eqq::Buildable` - In the class/module, all builders can be used as class methods
 * `include Eqq::Buildable` - In the class/module, all builders can be used as instance methods
 
