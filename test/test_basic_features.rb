@@ -8,7 +8,7 @@ class TestBasicFeatures < Test::Unit::TestCase
 
   def test_OR
     pattern = Eqq.OR(42, 53, 64, 75)
-    assert_lambda_signature(pattern)
+    assert_product_signature(pattern)
     assert_equal('OR(42, 53, 64, 75)', pattern.inspect)
     assert(pattern.inspect.frozen?)
 
@@ -37,7 +37,7 @@ class TestBasicFeatures < Test::Unit::TestCase
       Eqq.OR(42)
     end
 
-    assert_lambda_signature(Eqq.OR(42, 53))
+    assert_product_signature(Eqq.OR(42, 53))
 
     evil = []
     class << evil
@@ -51,7 +51,7 @@ class TestBasicFeatures < Test::Unit::TestCase
 
   def test_NOR
     pattern = Eqq.NOR(42, 53, 64, 75)
-    assert_lambda_signature(pattern)
+    assert_product_signature(pattern)
     assert_equal('NOT(OR(42, 53, 64, 75))', pattern.inspect)
 
     expectation_by_given_value = {
@@ -79,12 +79,12 @@ class TestBasicFeatures < Test::Unit::TestCase
       Eqq.NOR(42)
     end
 
-    assert_lambda_signature(Eqq.NOR(42, 53))
+    assert_product_signature(Eqq.NOR(42, 53))
   end
 
   def test_XOR
     pattern = Eqq.XOR(/\d/, Symbol)
-    assert_lambda_signature(pattern)
+    assert_product_signature(pattern)
     assert_equal('XOR(/\d/, Symbol)', pattern.inspect)
 
     expectation_by_given_value = {
@@ -116,7 +116,7 @@ class TestBasicFeatures < Test::Unit::TestCase
 
   def test_AND
     pattern = Eqq.AND(/\d/, Symbol, /bar/)
-    assert_lambda_signature(pattern)
+    assert_product_signature(pattern)
     assert_equal('AND(/\d/, Symbol, /bar/)', pattern.inspect)
 
     expectation_by_given_value = {
@@ -141,12 +141,12 @@ class TestBasicFeatures < Test::Unit::TestCase
       Eqq.AND(42)
     end
 
-    assert_lambda_signature(Eqq.AND(42, Integer))
+    assert_product_signature(Eqq.AND(42, Integer))
   end
 
   def test_NAND
     pattern = Eqq.NAND(/\d/, Symbol, /bar/)
-    assert_lambda_signature(pattern)
+    assert_product_signature(pattern)
     assert_equal('NOT(AND(/\d/, Symbol, /bar/))', pattern.inspect)
 
     expectation_by_given_value = {
@@ -171,7 +171,7 @@ class TestBasicFeatures < Test::Unit::TestCase
       Eqq.NAND(42)
     end
 
-    assert_lambda_signature(Eqq.NAND(42, Integer))
+    assert_product_signature(Eqq.NAND(42, Integer))
   end
 
   def test_CAN
@@ -186,7 +186,7 @@ class TestBasicFeatures < Test::Unit::TestCase
       def bar; end
     end.new
     pattern = Eqq.CAN(:foo, :bar)
-    assert_lambda_signature(pattern)
+    assert_product_signature(pattern)
     assert_equal('CAN(:foo, :bar)', pattern.inspect)
 
     expectation_by_given_value = {
@@ -211,12 +211,12 @@ class TestBasicFeatures < Test::Unit::TestCase
       Eqq.CAN(42)
     end
 
-    assert_lambda_signature(Eqq.CAN('foo'))
+    assert_product_signature(Eqq.CAN('foo'))
   end
 
   def test_SAME
     pattern = Eqq.SAME(42)
-    assert_lambda_signature(pattern)
+    assert_product_signature(pattern)
     assert_equal('SAME(42)', pattern.inspect)
 
     expectation_by_given_value = {
@@ -244,7 +244,7 @@ class TestBasicFeatures < Test::Unit::TestCase
 
   def test_EQ
     pattern = Eqq.EQ(42)
-    assert_lambda_signature(pattern)
+    assert_product_signature(pattern)
     assert_equal('EQ(42)', pattern.inspect)
 
     expectation_by_given_value = {
@@ -272,7 +272,7 @@ class TestBasicFeatures < Test::Unit::TestCase
 
   def test_NOT
     pattern = Eqq.NOT(Eqq.EQ(42))
-    assert_lambda_signature(pattern)
+    assert_product_signature(pattern)
     assert_equal('NOT(EQ(42))', pattern.inspect)
 
     expectation_by_given_value = {
@@ -300,7 +300,7 @@ class TestBasicFeatures < Test::Unit::TestCase
 
   def test_RESCUE_with_Exception
     pattern = Eqq.RESCUE(NoMethodError, Eqq.SEND(:any?, Integer))
-    assert_lambda_signature(pattern)
+    assert_product_signature(pattern)
     assert_equal('RESCUE(NoMethodError, SEND(:any?, Integer))', pattern.inspect)
 
     expectation_by_given_value = {
@@ -345,14 +345,14 @@ class TestBasicFeatures < Test::Unit::TestCase
     end.new
 
     pattern = Eqq.RESCUE(mod, Eqq.SEND(:raise_error, Integer))
-    assert_lambda_signature(pattern)
+    assert_product_signature(pattern)
     assert_false(pattern === custom_error1_raiser)
     assert_true(pattern === custom_error2_raiser)
   end
 
   def test_QUIET
     pattern = Eqq.QUIET(Eqq.SEND(:any?, Integer), Eqq.SEND(:all?, String))
-    assert_lambda_signature(pattern)
+    assert_product_signature(pattern)
     assert_equal('QUIET(SEND(:any?, Integer), SEND(:all?, String))', pattern.inspect)
 
     expectation_by_given_value = {
@@ -372,12 +372,12 @@ class TestBasicFeatures < Test::Unit::TestCase
       Eqq.QUIET()
     end
 
-    assert_lambda_signature(Eqq.QUIET(Eqq.SEND(:any?, Integer)))
+    assert_product_signature(Eqq.QUIET(Eqq.SEND(:any?, Integer)))
   end
 
   def test_SEND
     pattern = Eqq.SEND(:all?, /foo/)
-    assert_lambda_signature(pattern)
+    assert_product_signature(pattern)
     assert_equal('SEND(:all?, /foo/)', pattern.inspect)
 
     assert_true(pattern === ['foo', :foo, 'foobar'])
@@ -391,7 +391,7 @@ class TestBasicFeatures < Test::Unit::TestCase
 
   def test_BOOLEAN
     pattern = Eqq.BOOLEAN
-    assert_lambda_signature(pattern)
+    assert_product_signature(pattern)
     assert_equal('BOOLEAN()', pattern.inspect)
 
     [false, true].each do |given|
@@ -405,7 +405,7 @@ class TestBasicFeatures < Test::Unit::TestCase
 
   def test_ANYTHING
     pattern = Eqq.ANYTHING
-    assert_lambda_signature(pattern)
+    assert_product_signature(pattern)
     assert_equal('ANYTHING()', pattern.inspect)
 
     [42, nil, false, true, 'string', Object.new, [], {}].each do |given|
@@ -416,13 +416,29 @@ class TestBasicFeatures < Test::Unit::TestCase
 
   def test_NEVER
     pattern = Eqq.NEVER
-    assert_lambda_signature(pattern)
+    assert_product_signature(pattern)
     assert_equal('NEVER()', pattern.inspect)
 
     [42, nil, false, true, 'string', Object.new, [], {}].each do |given|
       assert_false(pattern === given, "given: #{given}")
     end
     assert_false(pattern === BasicObject.new)
+  end
+
+  def test_pattern?
+    expectation_by_given_value = {
+      ->{} => false,
+      ->x, y{} => false,
+      ->x {} => true,
+      Object.new => true,
+      Integer => true
+    }
+
+    expectation_by_given_value.each_pair do |given, expectation|
+      assert_equal(expectation, Eqq.pattern?(given), "given: #{given}")
+    end
+
+    assert_false(Eqq.pattern?(BasicObject.new))
   end
 
   def test_valid?
@@ -468,13 +484,19 @@ class TestBasicFeatures < Test::Unit::TestCase
 
       OR(42, String)
     end
-    assert_lambda_signature(pattern)
+    assert_product_signature(pattern)
     assert_equal([42, 'string'], [42, nil, BasicObject.new, 'string'].grep(pattern))
+  end
 
+  data(
+    'When the object does not have #===' => BasicObject.new,
+    'When the object has #===, but it is not a Proc' => Integer,
+    'When the object is Proc, but it takes shortage of arguments' => -> {true},
+    'When the object is Proc, but it takes excess of arguments' => ->_v1, _v2 {true}
+  )
+  def test_define_raises_exceptions_for_unexpected_operations(result)
     assert_raises(Eqq::InvalidProductError) do
-      Eqq.define do
-        BasicObject.new
-      end
+      Eqq.define { result }
     end
   end
 end

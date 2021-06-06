@@ -23,10 +23,11 @@ require_relative '../lib/eqq'
 
 class Test::Unit::TestCase
   module EqqAssertions
-    def assert_lambda_signature(product)
+    def assert_product_signature(product)
       assert_instance_of(Proc, product)
       assert(product.lambda?)
       assert_equal(1, product.arity)
+      assert_true(Eqq.satisfy?(product))
     end
   end
 end
