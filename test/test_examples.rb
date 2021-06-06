@@ -29,8 +29,8 @@ class TestExamples < Test::Unit::TestCase
     assert_equal('NOT(OR(AND(Float, 20..50), Integer))', inverted.inspect)
     assert_equal([4.2], [4.2, 42, 42.0, 420].grep(inverted))
 
-    assert_equal(false, Eqq.SEND(:all?, pattern) === [4.2, 42, 42.0, 420])
-    assert_equal(true, Eqq.SEND(:any?, pattern) === [4.2, 42, 42.0, 420])
+    assert_false(Eqq.SEND(:all?, pattern) === [4.2, 42, 42.0, 420])
+    assert_true(Eqq.SEND(:any?, pattern) === [4.2, 42, 42.0, 420])
 
     ret_in_case = (
       case 42

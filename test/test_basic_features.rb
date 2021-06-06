@@ -201,7 +201,7 @@ class TestBasicFeatures < Test::Unit::TestCase
       assert_equal(expectation, pattern === given, "given: #{given}")
     end
 
-    assert_equal(false, pattern === BasicObject.new)
+    assert_false(pattern === BasicObject.new)
 
     assert_raises(ArgumentError) do
       Eqq.CAN()
@@ -231,7 +231,7 @@ class TestBasicFeatures < Test::Unit::TestCase
     expectation_by_given_value.each_pair do |given, expectation|
       assert_equal(expectation, pattern === given, "given: #{given}")
     end
-    assert_equal(false, pattern === BasicObject.new)
+    assert_false(pattern === BasicObject.new)
 
     assert_raises(ArgumentError) do
       Eqq.SAME()
@@ -259,7 +259,7 @@ class TestBasicFeatures < Test::Unit::TestCase
     expectation_by_given_value.each_pair do |given, expectation|
       assert_equal(expectation, pattern === given, "given: #{given}")
     end
-    assert_equal(false, pattern === BasicObject.new)
+    assert_false(pattern === BasicObject.new)
 
     assert_raises(ArgumentError) do
       Eqq.EQ()
@@ -287,7 +287,7 @@ class TestBasicFeatures < Test::Unit::TestCase
     expectation_by_given_value.each_pair do |given, expectation|
       assert_equal(expectation, pattern === given, "given: #{given}")
     end
-    assert_equal(true, pattern === BasicObject.new)
+    assert_true(pattern === BasicObject.new)
 
     assert_raises(ArgumentError) do
       Eqq.NOT()
@@ -314,7 +314,7 @@ class TestBasicFeatures < Test::Unit::TestCase
     expectation_by_given_value.each_pair do |given, expectation|
       assert_equal(expectation, pattern === given, "given: #{given}")
     end
-    assert_equal(true, pattern === BasicObject.new)
+    assert_true(pattern === BasicObject.new)
 
     assert_raises(ArgumentError) do
       Eqq.RESCUE()
@@ -346,8 +346,8 @@ class TestBasicFeatures < Test::Unit::TestCase
 
     pattern = Eqq.RESCUE(mod, Eqq.SEND(:raise_error, Integer))
     assert_lambda_signature(pattern)
-    assert_equal(false, pattern === custom_error1_raiser)
-    assert_equal(true, pattern === custom_error2_raiser)
+    assert_false(pattern === custom_error1_raiser)
+    assert_true(pattern === custom_error2_raiser)
   end
 
   def test_QUIET
@@ -366,7 +366,7 @@ class TestBasicFeatures < Test::Unit::TestCase
     expectation_by_given_value.each_pair do |given, expectation|
       assert_equal(expectation, pattern === given, "given: #{given}")
     end
-    assert_equal(false, pattern === BasicObject.new)
+    assert_false(pattern === BasicObject.new)
 
     assert_raises(ArgumentError) do
       Eqq.QUIET()
@@ -380,9 +380,9 @@ class TestBasicFeatures < Test::Unit::TestCase
     assert_lambda_signature(pattern)
     assert_equal('SEND(:all?, /foo/)', pattern.inspect)
 
-    assert_equal(true, pattern === ['foo', :foo, 'foobar'])
-    assert_equal(false, pattern === ['foo', :foo, 'foobar', 'baz'])
-    assert_equal(false, pattern === [BasicObject.new])
+    assert_true(pattern === ['foo', :foo, 'foobar'])
+    assert_false(pattern === ['foo', :foo, 'foobar', 'baz'])
+    assert_false(pattern === [BasicObject.new])
 
     assert_raises(NoMethodError) do
       pattern === Object.new
@@ -395,12 +395,12 @@ class TestBasicFeatures < Test::Unit::TestCase
     assert_equal('BOOLEAN()', pattern.inspect)
 
     [false, true].each do |given|
-      assert_equal(true, pattern === given, "given: #{given}")
+      assert_true(pattern === given, "given: #{given}")
     end
     [42, nil, '', Object.new, [], {}, 0].each do |given|
-      assert_equal(false, pattern === given, "given: #{given}")
+      assert_false(pattern === given, "given: #{given}")
     end
-    assert_equal(false, pattern === BasicObject.new)
+    assert_false(pattern === BasicObject.new)
   end
 
   def test_ANYTHING
@@ -409,9 +409,9 @@ class TestBasicFeatures < Test::Unit::TestCase
     assert_equal('ANYTHING()', pattern.inspect)
 
     [42, nil, false, true, 'string', Object.new, [], {}].each do |given|
-      assert_equal(true, pattern === given, "given: #{given}")
+      assert_true(pattern === given, "given: #{given}")
     end
-    assert_equal(true, pattern === BasicObject.new)
+    assert_true(pattern === BasicObject.new)
   end
 
   def test_NEVER
@@ -420,9 +420,9 @@ class TestBasicFeatures < Test::Unit::TestCase
     assert_equal('NEVER()', pattern.inspect)
 
     [42, nil, false, true, 'string', Object.new, [], {}].each do |given|
-      assert_equal(false, pattern === given, "given: #{given}")
+      assert_false(pattern === given, "given: #{given}")
     end
-    assert_equal(false, pattern === BasicObject.new)
+    assert_false(pattern === BasicObject.new)
   end
 
   def test_valid?
@@ -438,7 +438,7 @@ class TestBasicFeatures < Test::Unit::TestCase
       assert_equal(expectation, Eqq.valid?(given), "given: #{given}")
     end
 
-    assert_equal(false, Eqq.valid?(BasicObject.new))
+    assert_false(Eqq.valid?(BasicObject.new))
   end
 
   def test_define
