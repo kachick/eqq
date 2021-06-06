@@ -38,7 +38,7 @@ module Eqq
       # @api private
       # @return [void]
       def validate_patterns(*patterns)
-        invalids = patterns.reject { |pattern| Eqq.valid?(pattern) }
+        invalids = patterns.reject { |pattern| Eqq.pattern?(pattern) }
         invalid_inspections = invalids.map { |invalid| safe_inspect_for(invalid) }.join(', ')
         raise ArgumentError, "given `#{invalid_inspections}` are invalid as pattern objects" unless invalids.empty?
       end

@@ -15,7 +15,7 @@ module Eqq
   class InvalidProductError < Error; end
 
   class << self
-    def valid?(object)
+    def pattern?(object)
       case object
       when Proc, Method
         object.arity == 1
@@ -28,11 +28,21 @@ module Eqq
       end
     end
 
+    # @deprecated Use {pattern?} instead. This will be dropped since `0.1.0`
+    def valid?(object)
+      pattern?(object)
+    end
+
+    # @api private
+    def satisfy?(object)
+      (Proc === object) && object.lambda? && (object.arity == 1)
+    end
+
     # @return [#===]
     # @raise [InvalidProductError] if the return value is invalid as a pattern object
     def define(&block)
       pattern = DSLScope.new.instance_exec(&block)
-      raise InvalidProductError unless valid?(pattern)
+      raise InvalidProductError unless satisfy?(pattern)
 
       pattern
     end

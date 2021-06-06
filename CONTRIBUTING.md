@@ -50,3 +50,15 @@ $ bundle exec rake simulate_ci
 $ echo $?
 0
 ```
+
+## Note
+
+Below commands shows providing rake tasks
+
+```console
+$ bundle exec rake --tasks
+Summaries will be shown!
+
+$ bundle exec rake -D
+Details will be shown!
+```
