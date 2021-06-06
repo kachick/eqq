@@ -38,6 +38,8 @@ module Eqq
       (Proc === object) && object.lambda? && (object.arity == 1) && object.respond_to?(:inspect)
     end
 
+    # In the block scope, all builder methods can be used without receiver
+    #
     # @return [Proc]
     # @raise [InvalidProductError] if the return value is not looks to be built with builders
     def build(&block)
@@ -50,6 +52,7 @@ module Eqq
     end
 
     # @deprecated Use {build} instead. This will be dropped since `0.1.0`
+    # @return [Proc]
     def define(&block)
       build(&block)
     end
