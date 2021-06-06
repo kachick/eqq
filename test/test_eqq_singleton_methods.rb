@@ -3,7 +3,7 @@
 
 require_relative 'helper'
 
-class TestBasicFeatures < Test::Unit::TestCase
+class TestEqqSingletonMethods < Test::Unit::TestCase
   include EqqAssertions
 
   def test_pattern?
