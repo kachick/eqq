@@ -68,6 +68,14 @@ class TestEqqSingletonMethods < Test::Unit::TestCase
     end
     assert_product_signature(pattern)
     assert_equal([42, 'string'], [42, nil, BasicObject.new, 'string'].grep(pattern))
+
+    assert_raise_with_message(ArgumentError, /might be mis used .+ in your code/) do
+      Eqq.build
+    end
+
+    assert_raises(ArgumentError) do
+      Eqq.build(42) { OR(42, String) }
+    end
   end
 
   data(
@@ -78,7 +86,7 @@ class TestEqqSingletonMethods < Test::Unit::TestCase
     'When the object dose not have `#inspect`' => Eqq.AND(Integer, 42).tap { |product| product.singleton_class.undef_method(:inspect) }
   )
   def test_build_raises_exceptions_for_unexpected_operations(result)
-    assert_raises(Eqq::InvalidProductError) do
+    assert_raise_with_message(Eqq::InvalidProductError, /might be mis used .+ in your code/) do
       Eqq.build { result }
     end
   end
@@ -113,6 +121,14 @@ class TestEqqSingletonMethods < Test::Unit::TestCase
     end
     assert_product_signature(pattern)
     assert_equal([42, 'string'], [42, nil, BasicObject.new, 'string'].grep(pattern))
+
+    assert_raise_with_message(ArgumentError, /might be mis used .+ in your code/) do
+      Eqq.define
+    end
+
+    assert_raises(ArgumentError) do
+      Eqq.define(42) { OR(42, String) }
+    end
   end
 
   data(
@@ -123,7 +139,7 @@ class TestEqqSingletonMethods < Test::Unit::TestCase
     'When the object dose not have `#inspect`' => Eqq.AND(Integer, 42).tap { |product| product.singleton_class.undef_method(:inspect) }
   )
   def test_define_raises_exceptions_for_unexpected_operations(result)
-    assert_raises(Eqq::InvalidProductError) do
+    assert_raise_with_message(Eqq::InvalidProductError, /might be mis used .+ in your code/) do
       Eqq.define { result }
     end
   end

@@ -43,10 +43,9 @@ class TestBasicFeatures < Test::Unit::TestCase
     class << evil
       undef_method :===
     end
-    err = assert_raises(ArgumentError) do
+    assert_raise_with_message(ArgumentError, /given `\[\], #<BasicObject\S+` are invalid as pattern objects/) do
       Eqq.OR(evil, 42, BasicObject.new)
     end
-    assert_match(/given `\[\], #<BasicObject\S+` are invalid as pattern objects/, err.message)
   end
 
   def test_NOR

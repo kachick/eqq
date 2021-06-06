@@ -41,8 +41,10 @@ module Eqq
     # @return [Proc]
     # @raise [InvalidProductError] if the return value is not looks to be built with builders
     def build(&block)
+      raise ArgumentError, 'might be mis used the `Eqq.build` in your code' unless block
+
       pattern = DSLScope.new.instance_exec(&block)
-      raise InvalidProductError unless satisfy?(pattern)
+      raise InvalidProductError, 'might be mis used the `Eqq.build` in your code' unless satisfy?(pattern)
 
       pattern
     end
