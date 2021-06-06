@@ -19,7 +19,7 @@ class TestExamples < Test::Unit::TestCase
 
     assert_equal([[], {}, nil], [42, [], {}, 'string', Object.new, nil].grep(Eqq.CAN(:to_h)))
 
-    pattern = Eqq.define do
+    pattern = Eqq.build do
       OR(AND(Float, 20..50), Integer)
     end
     assert_equal('OR(AND(Float, 20..50), Integer)', pattern.inspect)

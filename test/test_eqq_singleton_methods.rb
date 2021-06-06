@@ -38,6 +38,51 @@ class TestEqqSingletonMethods < Test::Unit::TestCase
     assert_false(Eqq.valid?(BasicObject.new))
   end
 
+  def test_build
+    builders = %i[
+      OR
+      AND
+      NAND
+      NOR
+      XOR
+      NOT
+      EQ
+      SAME
+      CAN
+      RESCUE
+      QUIET
+      SEND
+      ANYTHING
+      BOOLEAN
+      NIL
+    ]
+
+    assertion_scope = self
+
+    pattern = Eqq.build do
+      builders.each do |builder|
+        assertion_scope.assert_same(Eqq.method(builder).owner, method(builder).owner)
+      end
+
+      OR(42, String)
+    end
+    assert_product_signature(pattern)
+    assert_equal([42, 'string'], [42, nil, BasicObject.new, 'string'].grep(pattern))
+  end
+
+  data(
+    'When the object does not have #===' => BasicObject.new,
+    'When the object has #===, but it is not a Proc' => Integer,
+    'When the object is Proc, but it takes shortage of arguments' => -> {true},
+    'When the object is Proc, but it takes excess of arguments' => ->_v1, _v2 {true},
+    'When the object dose not have `#inspect`' => Eqq.AND(Integer, 42).tap { |product| product.singleton_class.undef_method(:inspect) }
+  )
+  def test_build_raises_exceptions_for_unexpected_operations(result)
+    assert_raises(Eqq::InvalidProductError) do
+      Eqq.build { result }
+    end
+  end
+
   def test_define
     builders = %i[
       OR
@@ -54,6 +99,7 @@ class TestEqqSingletonMethods < Test::Unit::TestCase
       SEND
       ANYTHING
       BOOLEAN
+      NIL
     ]
 
     assertion_scope = self

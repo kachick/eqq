@@ -114,5 +114,8 @@ module Eqq
   def self.satisfy?: (untyped object) -> bool
 
   # In the block scope, all builder methods can be used without receiver
+  def self.build:  { () -> _Patternable } -> _Patternable
+
+  # Alias of `build`. But deperecated. Do not use in your code anymore.
   def self.define:  { () -> _Patternable } -> _Patternable
 end

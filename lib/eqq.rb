@@ -38,13 +38,18 @@ module Eqq
       (Proc === object) && object.lambda? && (object.arity == 1) && object.respond_to?(:inspect)
     end
 
-    # @return [#===]
-    # @raise [InvalidProductError] if the return value is invalid as a pattern object
-    def define(&block)
+    # @return [Proc]
+    # @raise [InvalidProductError] if the return value is not looks to be built with builders
+    def build(&block)
       pattern = DSLScope.new.instance_exec(&block)
       raise InvalidProductError unless satisfy?(pattern)
 
       pattern
+    end
+
+    # @deprecated Use {build} instead. This will be dropped since `0.1.0`
+    def define(&block)
+      build(&block)
     end
   end
 end
