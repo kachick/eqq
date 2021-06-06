@@ -29,11 +29,11 @@ class TestBuilders < Test::Unit::TestCase
       assert_equal(expectation, pattern === given, "given: #{given}")
     end
 
-    assert_raises(ArgumentError) do
+    assert_raise(ArgumentError) do
       Eqq.OR()
     end
 
-    assert_raises(ArgumentError) do
+    assert_raise(ArgumentError) do
       Eqq.OR(42)
     end
 
@@ -70,11 +70,11 @@ class TestBuilders < Test::Unit::TestCase
       assert_equal(expectation, pattern === given, "given: #{given}")
     end
 
-    assert_raises(ArgumentError) do
+    assert_raise(ArgumentError) do
       Eqq.NOR()
     end
 
-    assert_raises(ArgumentError) do
+    assert_raise(ArgumentError) do
       Eqq.NOR(42)
     end
 
@@ -100,15 +100,15 @@ class TestBuilders < Test::Unit::TestCase
       assert_equal(expectation, pattern === given, "given: #{given}")
     end
 
-    assert_raises(ArgumentError) do
+    assert_raise(ArgumentError) do
       Eqq.XOR()
     end
 
-    assert_raises(ArgumentError) do
+    assert_raise(ArgumentError) do
       Eqq.XOR(42)
     end
 
-    assert_raises(ArgumentError) do
+    assert_raise(ArgumentError) do
       Eqq.XOR(42, 43, 44)
     end
   end
@@ -132,11 +132,11 @@ class TestBuilders < Test::Unit::TestCase
       assert_equal(expectation, pattern === given, "given: #{given}")
     end
 
-    assert_raises(ArgumentError) do
+    assert_raise(ArgumentError) do
       Eqq.AND()
     end
 
-    assert_raises(ArgumentError) do
+    assert_raise(ArgumentError) do
       Eqq.AND(42)
     end
 
@@ -162,11 +162,11 @@ class TestBuilders < Test::Unit::TestCase
       assert_equal(expectation, pattern === given, "given: #{given}")
     end
 
-    assert_raises(ArgumentError) do
+    assert_raise(ArgumentError) do
       Eqq.NAND()
     end
 
-    assert_raises(ArgumentError) do
+    assert_raise(ArgumentError) do
       Eqq.NAND(42)
     end
 
@@ -202,11 +202,11 @@ class TestBuilders < Test::Unit::TestCase
 
     assert_false(pattern === BasicObject.new)
 
-    assert_raises(ArgumentError) do
+    assert_raise(ArgumentError) do
       Eqq.CAN()
     end
 
-    assert_raises(ArgumentError) do
+    assert_raise(ArgumentError) do
       Eqq.CAN(42)
     end
 
@@ -232,11 +232,11 @@ class TestBuilders < Test::Unit::TestCase
     end
     assert_false(pattern === BasicObject.new)
 
-    assert_raises(ArgumentError) do
+    assert_raise(ArgumentError) do
       Eqq.SAME()
     end
 
-    assert_raises(ArgumentError) do
+    assert_raise(ArgumentError) do
       Eqq.SAME(42, 43)
     end
   end
@@ -260,11 +260,11 @@ class TestBuilders < Test::Unit::TestCase
     end
     assert_false(pattern === BasicObject.new)
 
-    assert_raises(ArgumentError) do
+    assert_raise(ArgumentError) do
       Eqq.EQ()
     end
 
-    assert_raises(ArgumentError) do
+    assert_raise(ArgumentError) do
       Eqq.EQ(42, 43)
     end
   end
@@ -288,11 +288,11 @@ class TestBuilders < Test::Unit::TestCase
     end
     assert_true(pattern === BasicObject.new)
 
-    assert_raises(ArgumentError) do
+    assert_raise(ArgumentError) do
       Eqq.NOT()
     end
 
-    assert_raises(ArgumentError) do
+    assert_raise(ArgumentError) do
       Eqq.NOT(Eqq.EQ(42), Eqq.EQ(43))
     end
   end
@@ -315,11 +315,11 @@ class TestBuilders < Test::Unit::TestCase
     end
     assert_true(pattern === BasicObject.new)
 
-    assert_raises(ArgumentError) do
+    assert_raise(ArgumentError) do
       Eqq.RESCUE()
     end
 
-    assert_raises(ArgumentError) do
+    assert_raise(ArgumentError) do
       Eqq.RESCUE(NoMethodError)
     end
   end
@@ -367,7 +367,7 @@ class TestBuilders < Test::Unit::TestCase
     end
     assert_false(pattern === BasicObject.new)
 
-    assert_raises(ArgumentError) do
+    assert_raise(ArgumentError) do
       Eqq.QUIET()
     end
 
@@ -383,7 +383,7 @@ class TestBuilders < Test::Unit::TestCase
     assert_false(pattern === ['foo', :foo, 'foobar', 'baz'])
     assert_false(pattern === [BasicObject.new])
 
-    assert_raises(NoMethodError) do
+    assert_raise(NoMethodError) do
       pattern === Object.new
     end
   end
@@ -409,7 +409,7 @@ class TestBuilders < Test::Unit::TestCase
     assert_equal('NIL()', pattern.inspect)
     assert_same(Eqq.NIL(), Eqq.NIL())
 
-    assert_raises(ArgumentError) do
+    assert_raise(ArgumentError) do
       Eqq.NIL(Integer)
     end
   end

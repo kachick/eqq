@@ -73,7 +73,7 @@ class TestEqqSingletonMethods < Test::Unit::TestCase
       Eqq.build
     end
 
-    assert_raises(ArgumentError) do
+    assert_raise(ArgumentError) do
       Eqq.build(42) { OR(42, String) }
     end
   end
@@ -126,7 +126,7 @@ class TestEqqSingletonMethods < Test::Unit::TestCase
       Eqq.define
     end
 
-    assert_raises(ArgumentError) do
+    assert_raise(ArgumentError) do
       Eqq.define(42) { OR(42, String) }
     end
   end
