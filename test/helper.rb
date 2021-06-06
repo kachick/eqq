@@ -27,6 +27,7 @@ class Test::Unit::TestCase
       assert_instance_of(Proc, product)
       assert(product.lambda?)
       assert_equal(1, product.arity)
+      assert_instance_of(String, product.inspect)
       assert_true(Eqq.satisfy?(product))
     end
   end

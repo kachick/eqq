@@ -73,7 +73,8 @@ class TestBasicFeatures < Test::Unit::TestCase
     'When the object does not have #===' => BasicObject.new,
     'When the object has #===, but it is not a Proc' => Integer,
     'When the object is Proc, but it takes shortage of arguments' => -> {true},
-    'When the object is Proc, but it takes excess of arguments' => ->_v1, _v2 {true}
+    'When the object is Proc, but it takes excess of arguments' => ->_v1, _v2 {true},
+    'When the object dose not have `#inspect`' => Eqq.AND(Integer, 42).tap { |product| product.singleton_class.undef_method(:inspect) }
   )
   def test_define_raises_exceptions_for_unexpected_operations(result)
     assert_raises(Eqq::InvalidProductError) do

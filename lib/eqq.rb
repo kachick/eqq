@@ -35,7 +35,7 @@ module Eqq
 
     # @api private
     def satisfy?(object)
-      (Proc === object) && object.lambda? && (object.arity == 1)
+      (Proc === object) && object.lambda? && (object.arity == 1) && object.respond_to?(:inspect)
     end
 
     # @return [#===]
