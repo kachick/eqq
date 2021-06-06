@@ -107,6 +107,7 @@ Reuse as you wish!
 * SAME(object) - Product returns `true` when matched with `#equal?`
 * SEND(name, pattern) - Basically provided for Enumerable
 * BOOLEAN() - Product returns `true` when matched to `true` or `false`
+* NIL() - Product returns `true` when matched to `nil` (Not consider `nil?`)
 * ANYTHING() - Product returns `true`, always `true`
 * NEVER() - Product returns `false`, always `false`
 * XOR(pattern1, pattern2) - Product returns `true` when matched one of the pattern, when matched both returns `false`

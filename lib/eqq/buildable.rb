@@ -288,5 +288,16 @@ module Eqq
     def BOOLEAN
       BOOLEAN
     end
+
+    NIL = ->v { nil.equal?(v) }
+    define_inspect_on(NIL, name: 'NIL', arguments: [])
+    private_constant :NIL
+
+    # Product returns `true` when matched to `nil` (Not consider `nil?`)
+    #
+    # @return [Proc]
+    def NIL
+      NIL
+    end
   end
 end

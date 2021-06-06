@@ -390,9 +390,10 @@ class TestBasicFeatures < Test::Unit::TestCase
   end
 
   def test_BOOLEAN
-    pattern = Eqq.BOOLEAN
+    pattern = Eqq.BOOLEAN()
     assert_product_signature(pattern)
     assert_equal('BOOLEAN()', pattern.inspect)
+    assert_same(Eqq.BOOLEAN(), Eqq.BOOLEAN())
 
     [false, true].each do |given|
       assert_true(pattern === given, "given: #{given}")
@@ -403,10 +404,38 @@ class TestBasicFeatures < Test::Unit::TestCase
     assert_false(pattern === BasicObject.new)
   end
 
+  def test_NIL_signature
+    pattern = Eqq.NIL()
+    assert_product_signature(pattern)
+    assert_equal('NIL()', pattern.inspect)
+    assert_same(Eqq.NIL(), Eqq.NIL())
+
+    assert_raises(ArgumentError) do
+      Eqq.NIL(Integer)
+    end
+  end
+
+  data(
+    'When given `nil`' => [true, nil],
+    'When given object overwrites `#nil?` as truthy' => [false, Class.new { def nil?; true; end }.new],
+    'When given `false`' => [false, false],
+    'When given `0`' => [false, 0],
+    'When given empty collection' => [false, []],
+    'When given `true`' => [false, true],
+    'When given `42`' => [false, 42],
+    'When given a Object' => [false, Object.new],
+    'When given a BasicObject' => [false, BasicObject.new]
+  )
+  def test_NIL_for_typical_values(expected_and_given)
+    expected, given = *expected_and_given
+    assert_equal(expected, Eqq.NIL() === given)
+  end
+
   def test_ANYTHING
-    pattern = Eqq.ANYTHING
+    pattern = Eqq.ANYTHING()
     assert_product_signature(pattern)
     assert_equal('ANYTHING()', pattern.inspect)
+    assert_same(Eqq.ANYTHING(), Eqq.ANYTHING())
 
     [42, nil, false, true, 'string', Object.new, [], {}].each do |given|
       assert_true(pattern === given, "given: #{given}")
@@ -415,9 +444,10 @@ class TestBasicFeatures < Test::Unit::TestCase
   end
 
   def test_NEVER
-    pattern = Eqq.NEVER
+    pattern = Eqq.NEVER()
     assert_product_signature(pattern)
     assert_equal('NEVER()', pattern.inspect)
+    assert_same(Eqq.NEVER(), Eqq.NEVER())
 
     [42, nil, false, true, 'string', Object.new, [], {}].each do |given|
       assert_false(pattern === given, "given: #{given}")
