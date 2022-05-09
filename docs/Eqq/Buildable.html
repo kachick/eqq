@@ -1,0 +1,2223 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Module: Eqq::Buildable
+  
+    &mdash; Documentation by YARD 0.9.27
+  
+</title>
+
+  <link rel="stylesheet" href="../css/style.css" type="text/css" />
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css" />
+
+<script type="text/javascript">
+  pathId = "Eqq::Buildable";
+  relpath = '../';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="../class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="../_index.html">Index (B)</a> &raquo;
+    <span class='title'><span class='object_link'><a href="../Eqq.html" title="Eqq (module)">Eqq</a></span></span>
+     &raquo; 
+    <span class="title">Buildable</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="../class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Module: Eqq::Buildable
+  
+  
+  
+</h1>
+<div class="box_info">
+  
+
+  
+  
+  
+  
+  
+
+  
+  <dl>
+    <dt>Included in:</dt>
+    <dd><span class='object_link'><a href="../Eqq.html" title="Eqq (module)">Eqq</a></span></dd>
+  </dl>
+  
+
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>lib/eqq/buildable.rb</dd>
+  </dl>
+  
+</div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    
+<p>Actually having definitions for the pattern builders</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+  
+    <h2>
+      Constant Summary
+      <small><a href="#" class="constants_summary_toggle">collapse</a></small>
+    </h2>
+
+    <dl class="constants">
+      
+        <dt id="INSPECTION_FALLBACK-constant" class="">INSPECTION_FALLBACK =
+          <div class="docstring">
+  <div class="discussion">
+    
+<p>When the inspection is failed some unexpected reasons, it will fallback to this value This value is not fixed as a spec, might be changed in future</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>UninspectableObject</span><span class='tstring_end'>&#39;</span></span></pre></dd>
+      
+    </dl>
+  
+
+
+
+
+
+
+
+  
+    <h2>
+      Class Method Summary
+      <small><a href="#" class="summary_toggle">collapse</a></small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#define_inspect_on-class_method" title="define_inspect_on (class method)">.<strong>define_inspect_on</strong>(product, name:, arguments:)  &#x21d2; void </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#safe_inspect_for-class_method" title="safe_inspect_for (class method)">.<strong>safe_inspect_for</strong>(object)  &#x21d2; String </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#validate_patterns-class_method" title="validate_patterns (class method)">.<strong>validate_patterns</strong>(*patterns)  &#x21d2; void </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+    </ul>
+  
+    <h2>
+      Instance Method Summary
+      <small><a href="#" class="summary_toggle">collapse</a></small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#AND-instance_method" title="#AND (instance method)">#<strong>AND</strong>(pattern1, pattern2, *patterns)  &#x21d2; Proc </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Product returns ‘true` when matched all patterns.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#ANYTHING-instance_method" title="#ANYTHING (instance method)">#<strong>ANYTHING</strong>  &#x21d2; Proc </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Product returns ‘true`, always `true`.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#BOOLEAN-instance_method" title="#BOOLEAN (instance method)">#<strong>BOOLEAN</strong>  &#x21d2; Proc </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Product returns ‘true` when matched to `true` or `false`.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#CAN-instance_method" title="#CAN (instance method)">#<strong>CAN</strong>(message1, *messages)  &#x21d2; Proc </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Product returns ‘true` when it has all of the methods (checked with `respond_to?`).</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#EQ-instance_method" title="#EQ (instance method)">#<strong>EQ</strong>(obj)  &#x21d2; Proc </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Product returns ‘true` when matched with `#==`.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#NAND-instance_method" title="#NAND (instance method)">#<strong>NAND</strong>(pattern1, pattern2, *patterns)  &#x21d2; Proc </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Product is an inverted <span class='object_link'><a href="#AND-instance_method" title="Eqq::Buildable#AND (method)">#AND</a></span>.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#NEVER-instance_method" title="#NEVER (instance method)">#<strong>NEVER</strong>  &#x21d2; Proc </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Product returns ‘false`, always `false`.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#NIL-instance_method" title="#NIL (instance method)">#<strong>NIL</strong>  &#x21d2; Proc </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Product returns ‘true` when matched to `nil` (Not consider `nil?`).</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#NOR-instance_method" title="#NOR (instance method)">#<strong>NOR</strong>(pattern1, pattern2, *patterns)  &#x21d2; Proc </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Product is an inverted <span class='object_link'><a href="#OR-instance_method" title="Eqq::Buildable#OR (method)">#OR</a></span>.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#NOT-instance_method" title="#NOT (instance method)">#<strong>NOT</strong>(pattern)  &#x21d2; Proc </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Product returns ‘true` when not matched the pattern.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#OR-instance_method" title="#OR (instance method)">#<strong>OR</strong>(pattern1, pattern2, *patterns)  &#x21d2; Proc </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Product returns ‘true` when matched even one pattern.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#QUIET-instance_method" title="#QUIET (instance method)">#<strong>QUIET</strong>(pattern1, *patterns)  &#x21d2; Proc </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Product returns ‘true` when all patterns did not raise any exception.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#RESCUE-instance_method" title="#RESCUE (instance method)">#<strong>RESCUE</strong>(mod, pattern)  &#x21d2; Proc </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Product returns ‘true` when the pattern raises the exception.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#SAME-instance_method" title="#SAME (instance method)">#<strong>SAME</strong>(obj)  &#x21d2; Proc </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Product returns ‘true` when matched with `#equal?`.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#SEND-instance_method" title="#SEND (instance method)">#<strong>SEND</strong>(name, pattern)  &#x21d2; Proc </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Basically provided for Enumerable.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#XOR-instance_method" title="#XOR (instance method)">#<strong>XOR</strong>(pattern1, pattern2)  &#x21d2; Proc </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Product returns ‘true` when matched one of the pattern, when matched both returns `false`.</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+
+  <div id="class_method_details" class="method_details_list">
+    <h2>Class Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="define_inspect_on-class_method">
+  
+    .<strong>define_inspect_on</strong>(product, name:, arguments:)  &#x21d2; <tt>void</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+<p class="note returns_void">This method returns an undefined value.</p>
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+31
+32
+33
+34
+35
+36</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/eqq/buildable.rb', line 31</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_define_inspect_on'>define_inspect_on</span><span class='lparen'>(</span><span class='id identifier rubyid_product'>product</span><span class='comma'>,</span> <span class='label'>name:</span><span class='comma'>,</span> <span class='label'>arguments:</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_inspect'>inspect</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_content'>(</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_arguments'>arguments</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_argument'>argument</span><span class='op'>|</span> <span class='id identifier rubyid_safe_inspect_for'>safe_inspect_for</span><span class='lparen'>(</span><span class='id identifier rubyid_argument'>argument</span><span class='rparen'>)</span> <span class='rbrace'>}</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>, </span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_content'>)</span><span class='tstring_end'>&quot;</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span>
+  <span class='id identifier rubyid_product'>product</span><span class='period'>.</span><span class='id identifier rubyid_define_singleton_method'>define_singleton_method</span><span class='lparen'>(</span><span class='symbol'>:inspect</span><span class='rparen'>)</span> <span class='kw'>do</span>
+    <span class='id identifier rubyid_inspect'>inspect</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="safe_inspect_for-class_method">
+  
+    .<strong>safe_inspect_for</strong>(object)  &#x21d2; <tt>String</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/eqq/buildable.rb', line 14</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_safe_inspect_for'>safe_inspect_for</span><span class='lparen'>(</span><span class='id identifier rubyid_object'>object</span><span class='rparen'>)</span>
+  <span class='const'>String</span><span class='period'>.</span><span class='id identifier rubyid_try_convert'>try_convert</span><span class='lparen'>(</span><span class='id identifier rubyid_object'>object</span><span class='period'>.</span><span class='id identifier rubyid_inspect'>inspect</span><span class='rparen'>)</span> <span class='op'>||</span> <span class='const'><span class='object_link'><a href="#INSPECTION_FALLBACK-constant" title="Eqq::Buildable::INSPECTION_FALLBACK (constant)">INSPECTION_FALLBACK</a></span></span>
+<span class='kw'>rescue</span> <span class='const'>Exception</span>
+  <span class='comment'># This implementation used `RSpec::Support::ObjectFormatter::UninspectableObjectInspector` as a reference, thank you!
+</span>  <span class='comment'># ref: https://github.com/kachick/times_kachick/issues/97
+</span>  <span class='id identifier rubyid_singleton_class'>singleton_class</span> <span class='op'>=</span> <span class='kw'>class</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_object'>object</span><span class='semicolon'>;</span> <span class='kw'>self</span><span class='semicolon'>;</span> <span class='kw'>end</span>
+  <span class='kw'>begin</span>
+    <span class='id identifier rubyid_klass'>klass</span> <span class='op'>=</span> <span class='id identifier rubyid_singleton_class'>singleton_class</span><span class='period'>.</span><span class='id identifier rubyid_ancestors'>ancestors</span><span class='period'>.</span><span class='id identifier rubyid_detect'>detect</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_ancestor'>ancestor</span><span class='op'>|</span> <span class='op'>!</span><span class='id identifier rubyid_ancestor'>ancestor</span><span class='period'>.</span><span class='id identifier rubyid_equal?'>equal?</span><span class='lparen'>(</span><span class='id identifier rubyid_singleton_class'>singleton_class</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
+    <span class='id identifier rubyid_native_object_id'>native_object_id</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>%#016x</span><span class='tstring_end'>&#39;</span></span> <span class='op'>%</span> <span class='lparen'>(</span><span class='id identifier rubyid_object'>object</span><span class='period'>.</span><span class='id identifier rubyid___id__'>__id__</span> <span class='op'>&lt;&lt;</span> <span class='int'>1</span><span class='rparen'>)</span>
+    <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>#&lt;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_klass'>klass</span><span class='embexpr_end'>}</span><span class='tstring_content'>:</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_native_object_id'>native_object_id</span><span class='embexpr_end'>}</span><span class='tstring_content'>&gt;</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>rescue</span> <span class='const'>Exception</span>
+    <span class='const'><span class='object_link'><a href="#INSPECTION_FALLBACK-constant" title="Eqq::Buildable::INSPECTION_FALLBACK (constant)">INSPECTION_FALLBACK</a></span></span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="validate_patterns-class_method">
+  
+    .<strong>validate_patterns</strong>(*patterns)  &#x21d2; <tt>void</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+<p class="note returns_void">This method returns an undefined value.</p>
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>ArgumentError</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+40
+41
+42
+43
+44</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/eqq/buildable.rb', line 40</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_validate_patterns'>validate_patterns</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_patterns'>patterns</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_invalids'>invalids</span> <span class='op'>=</span> <span class='id identifier rubyid_patterns'>patterns</span><span class='period'>.</span><span class='id identifier rubyid_reject'>reject</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_pattern'>pattern</span><span class='op'>|</span> <span class='const'><span class='object_link'><a href="../Eqq.html" title="Eqq (module)">Eqq</a></span></span><span class='period'>.</span><span class='id identifier rubyid_pattern?'><span class='object_link'><a href="../Eqq.html#pattern%3F-class_method" title="Eqq.pattern? (method)">pattern?</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_pattern'>pattern</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
+  <span class='id identifier rubyid_invalid_inspections'>invalid_inspections</span> <span class='op'>=</span> <span class='id identifier rubyid_invalids'>invalids</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_invalid'>invalid</span><span class='op'>|</span> <span class='id identifier rubyid_safe_inspect_for'>safe_inspect_for</span><span class='lparen'>(</span><span class='id identifier rubyid_invalid'>invalid</span><span class='rparen'>)</span> <span class='rbrace'>}</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>, </span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>given `</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_invalid_inspections'>invalid_inspections</span><span class='embexpr_end'>}</span><span class='tstring_content'>` are invalid as pattern objects</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>unless</span> <span class='id identifier rubyid_invalids'>invalids</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="AND-instance_method">
+  
+    #<strong>AND</strong>(pattern1, pattern2, *patterns)  &#x21d2; <tt>Proc</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Product returns ‘true` when matched all patterns</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>pattern1</span>
+      
+      
+        <span class='type'>(<tt>Proc</tt>, <tt>Method</tt>, <tt>#===</tt>)</span>
+      
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>pattern2</span>
+      
+      
+        <span class='type'>(<tt>Proc</tt>, <tt>Method</tt>, <tt>#===</tt>)</span>
+      
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>patterns</span>
+      
+      
+        <span class='type'>(<tt>Array&lt;Proc, Method, #===&gt;</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Proc</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/eqq/buildable.rb', line 53</span>
+
+<span class='kw'>def</span> <span class='const'>AND</span><span class='lparen'>(</span><span class='id identifier rubyid_pattern1'>pattern1</span><span class='comma'>,</span> <span class='id identifier rubyid_pattern2'>pattern2</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_patterns'>patterns</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_patterns'>patterns</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='id identifier rubyid_pattern1'>pattern1</span><span class='comma'>,</span> <span class='id identifier rubyid_pattern2'>pattern2</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_patterns'>patterns</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span>
+  <span class='const'><span class='object_link'><a href="" title="Eqq::Buildable (module)">Buildable</a></span></span><span class='period'>.</span><span class='id identifier rubyid_validate_patterns'><span class='object_link'><a href="#validate_patterns-class_method" title="Eqq::Buildable.validate_patterns (method)">validate_patterns</a></span></span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_patterns'>patterns</span><span class='rparen'>)</span>
+
+  <span class='id identifier rubyid_product'>product</span> <span class='op'>=</span> <span class='tlambda'>-&gt;</span><span class='id identifier rubyid_v'>v</span> <span class='tlambeg'>{</span>
+    <span class='id identifier rubyid_patterns'>patterns</span><span class='period'>.</span><span class='id identifier rubyid_all?'>all?</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_pattern'>pattern</span><span class='op'>|</span> <span class='id identifier rubyid_pattern'>pattern</span> <span class='op'>===</span> <span class='id identifier rubyid_v'>v</span> <span class='rbrace'>}</span>
+  <span class='rbrace'>}</span>
+
+  <span class='const'><span class='object_link'><a href="" title="Eqq::Buildable (module)">Buildable</a></span></span><span class='period'>.</span><span class='id identifier rubyid_define_inspect_on'><span class='object_link'><a href="#define_inspect_on-class_method" title="Eqq::Buildable.define_inspect_on (method)">define_inspect_on</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_product'>product</span><span class='comma'>,</span> <span class='label'>name:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>AND</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='label'>arguments:</span> <span class='id identifier rubyid_patterns'>patterns</span><span class='rparen'>)</span>
+
+  <span class='id identifier rubyid_product'>product</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="ANYTHING-instance_method">
+  
+    #<strong>ANYTHING</strong>  &#x21d2; <tt>Proc</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Product returns ‘true`, always `true`</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Proc</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+265
+266
+267</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/eqq/buildable.rb', line 265</span>
+
+<span class='kw'>def</span> <span class='const'>ANYTHING</span>
+  <span class='const'>EQQ_BUILTIN_ANYTHING</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="BOOLEAN-instance_method">
+  
+    #<strong>BOOLEAN</strong>  &#x21d2; <tt>Proc</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Product returns ‘true` when matched to `true` or `false`</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Proc</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+285
+286
+287</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/eqq/buildable.rb', line 285</span>
+
+<span class='kw'>def</span> <span class='const'>BOOLEAN</span>
+  <span class='const'>EQQ_BUILTIN_BOOLEAN</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="CAN-instance_method">
+  
+    #<strong>CAN</strong>(message1, *messages)  &#x21d2; <tt>Proc</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Product returns ‘true` when it has all of the methods (checked with `respond_to?`)</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>message1</span>
+      
+      
+        <span class='type'>(<tt>Symbol</tt>, <tt>String</tt>, <tt>#to_sym</tt>)</span>
+      
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>messages</span>
+      
+      
+        <span class='type'>(<tt>Array&lt;Symbol, String, #to_sym&gt;</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Proc</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/eqq/buildable.rb', line 160</span>
+
+<span class='kw'>def</span> <span class='const'>CAN</span><span class='lparen'>(</span><span class='id identifier rubyid_message1'>message1</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_messages'>messages</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_messages'>messages</span> <span class='op'>=</span> <span class='lparen'>(</span>
+    <span class='kw'>begin</span>
+      <span class='lbracket'>[</span><span class='id identifier rubyid_message1'>message1</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_messages'>messages</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='symbol'>:to_sym</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span>
+    <span class='kw'>rescue</span> <span class='const'>NoMethodError</span>
+      <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span>
+    <span class='kw'>end</span>
+  <span class='rparen'>)</span>
+
+  <span class='id identifier rubyid_product'>product</span> <span class='op'>=</span> <span class='tlambda'>-&gt;</span><span class='id identifier rubyid_v'>v</span> <span class='tlambeg'>{</span>
+    <span class='id identifier rubyid_messages'>messages</span><span class='period'>.</span><span class='id identifier rubyid_all?'>all?</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_message'>message</span><span class='op'>|</span>
+      <span class='kw'>begin</span>
+        <span class='id identifier rubyid_v'>v</span><span class='period'>.</span><span class='id identifier rubyid_respond_to?'>respond_to?</span><span class='lparen'>(</span><span class='id identifier rubyid_message'>message</span><span class='rparen'>)</span>
+      <span class='kw'>rescue</span> <span class='const'>NoMethodError</span>
+        <span class='kw'>false</span>
+      <span class='kw'>end</span>
+    <span class='rbrace'>}</span>
+  <span class='rbrace'>}</span>
+
+  <span class='const'><span class='object_link'><a href="" title="Eqq::Buildable (module)">Buildable</a></span></span><span class='period'>.</span><span class='id identifier rubyid_define_inspect_on'><span class='object_link'><a href="#define_inspect_on-class_method" title="Eqq::Buildable.define_inspect_on (method)">define_inspect_on</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_product'>product</span><span class='comma'>,</span> <span class='label'>name:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>CAN</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='label'>arguments:</span> <span class='id identifier rubyid_messages'>messages</span><span class='rparen'>)</span>
+
+  <span class='id identifier rubyid_product'>product</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="EQ-instance_method">
+  
+    #<strong>EQ</strong>(obj)  &#x21d2; <tt>Proc</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Product returns ‘true` when matched with `#==`</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>obj</span>
+      
+      
+        <span class='type'>(<tt>#==</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Proc</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+139
+140
+141
+142
+143</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/eqq/buildable.rb', line 139</span>
+
+<span class='kw'>def</span> <span class='const'>EQ</span><span class='lparen'>(</span><span class='id identifier rubyid_obj'>obj</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_product'>product</span> <span class='op'>=</span> <span class='tlambda'>-&gt;</span><span class='id identifier rubyid_v'>v</span> <span class='tlambeg'>{</span> <span class='id identifier rubyid_obj'>obj</span> <span class='op'>==</span> <span class='id identifier rubyid_v'>v</span> <span class='rbrace'>}</span>
+  <span class='const'><span class='object_link'><a href="" title="Eqq::Buildable (module)">Buildable</a></span></span><span class='period'>.</span><span class='id identifier rubyid_define_inspect_on'><span class='object_link'><a href="#define_inspect_on-class_method" title="Eqq::Buildable.define_inspect_on (method)">define_inspect_on</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_product'>product</span><span class='comma'>,</span> <span class='label'>name:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>EQ</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='label'>arguments:</span> <span class='lbracket'>[</span><span class='id identifier rubyid_obj'>obj</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_product'>product</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="NAND-instance_method">
+  
+    #<strong>NAND</strong>(pattern1, pattern2, *patterns)  &#x21d2; <tt>Proc</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Product is an inverted <span class='object_link'><a href="#AND-instance_method" title="Eqq::Buildable#AND (method)">#AND</a></span></p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>pattern1</span>
+      
+      
+        <span class='type'>(<tt>Proc</tt>, <tt>Method</tt>, <tt>#===</tt>)</span>
+      
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>pattern2</span>
+      
+      
+        <span class='type'>(<tt>Proc</tt>, <tt>Method</tt>, <tt>#===</tt>)</span>
+      
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>patterns</span>
+      
+      
+        <span class='type'>(<tt>Array&lt;Proc, Method, #===&gt;</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Proc</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+72
+73
+74</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/eqq/buildable.rb', line 72</span>
+
+<span class='kw'>def</span> <span class='const'>NAND</span><span class='lparen'>(</span><span class='id identifier rubyid_pattern1'>pattern1</span><span class='comma'>,</span> <span class='id identifier rubyid_pattern2'>pattern2</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_patterns'>patterns</span><span class='rparen'>)</span>
+  <span class='const'><span class='object_link'><a href="#NOT-instance_method" title="Eqq::Buildable#NOT (method)">NOT</a></span></span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="#AND-instance_method" title="Eqq::Buildable#AND (method)">AND</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_pattern1'>pattern1</span><span class='comma'>,</span> <span class='id identifier rubyid_pattern2'>pattern2</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_patterns'>patterns</span><span class='rparen'>)</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="NEVER-instance_method">
+  
+    #<strong>NEVER</strong>  &#x21d2; <tt>Proc</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Product returns ‘false`, always `false`</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Proc</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+275
+276
+277</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/eqq/buildable.rb', line 275</span>
+
+<span class='kw'>def</span> <span class='const'>NEVER</span>
+  <span class='const'>EQQ_BUILTIN_NEVER</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="NIL-instance_method">
+  
+    #<strong>NIL</strong>  &#x21d2; <tt>Proc</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Product returns ‘true` when matched to `nil` (Not consider `nil?`)</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Proc</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+295
+296
+297</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/eqq/buildable.rb', line 295</span>
+
+<span class='kw'>def</span> <span class='const'>NIL</span>
+  <span class='const'>EQQ_BUILTIN_NIL</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="NOR-instance_method">
+  
+    #<strong>NOR</strong>(pattern1, pattern2, *patterns)  &#x21d2; <tt>Proc</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Product is an inverted <span class='object_link'><a href="#OR-instance_method" title="Eqq::Buildable#OR (method)">#OR</a></span></p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>pattern1</span>
+      
+      
+        <span class='type'>(<tt>Proc</tt>, <tt>Method</tt>, <tt>#===</tt>)</span>
+      
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>pattern2</span>
+      
+      
+        <span class='type'>(<tt>Proc</tt>, <tt>Method</tt>, <tt>#===</tt>)</span>
+      
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>patterns</span>
+      
+      
+        <span class='type'>(<tt>Array&lt;Proc, Method, #===&gt;</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Proc</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+100
+101
+102</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/eqq/buildable.rb', line 100</span>
+
+<span class='kw'>def</span> <span class='const'>NOR</span><span class='lparen'>(</span><span class='id identifier rubyid_pattern1'>pattern1</span><span class='comma'>,</span> <span class='id identifier rubyid_pattern2'>pattern2</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_patterns'>patterns</span><span class='rparen'>)</span>
+  <span class='const'><span class='object_link'><a href="#NOT-instance_method" title="Eqq::Buildable#NOT (method)">NOT</a></span></span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="#OR-instance_method" title="Eqq::Buildable#OR (method)">OR</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_pattern1'>pattern1</span><span class='comma'>,</span> <span class='id identifier rubyid_pattern2'>pattern2</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_patterns'>patterns</span><span class='rparen'>)</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="NOT-instance_method">
+  
+    #<strong>NOT</strong>(pattern)  &#x21d2; <tt>Proc</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Product returns ‘true` when not matched the pattern</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>pattern</span>
+      
+      
+        <span class='type'>(<tt>Proc</tt>, <tt>Method</tt>, <tt>#===</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Proc</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+125
+126
+127
+128
+129
+130
+131
+132
+133</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/eqq/buildable.rb', line 125</span>
+
+<span class='kw'>def</span> <span class='const'>NOT</span><span class='lparen'>(</span><span class='id identifier rubyid_pattern'>pattern</span><span class='rparen'>)</span>
+  <span class='const'><span class='object_link'><a href="" title="Eqq::Buildable (module)">Buildable</a></span></span><span class='period'>.</span><span class='id identifier rubyid_validate_patterns'><span class='object_link'><a href="#validate_patterns-class_method" title="Eqq::Buildable.validate_patterns (method)">validate_patterns</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_pattern'>pattern</span><span class='rparen'>)</span>
+
+  <span class='id identifier rubyid_product'>product</span> <span class='op'>=</span> <span class='tlambda'>-&gt;</span><span class='id identifier rubyid_v'>v</span> <span class='tlambeg'>{</span> <span class='op'>!</span><span class='lparen'>(</span><span class='id identifier rubyid_pattern'>pattern</span> <span class='op'>===</span> <span class='id identifier rubyid_v'>v</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
+
+  <span class='const'><span class='object_link'><a href="" title="Eqq::Buildable (module)">Buildable</a></span></span><span class='period'>.</span><span class='id identifier rubyid_define_inspect_on'><span class='object_link'><a href="#define_inspect_on-class_method" title="Eqq::Buildable.define_inspect_on (method)">define_inspect_on</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_product'>product</span><span class='comma'>,</span> <span class='label'>name:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>NOT</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='label'>arguments:</span> <span class='lbracket'>[</span><span class='id identifier rubyid_pattern'>pattern</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+
+  <span class='id identifier rubyid_product'>product</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="OR-instance_method">
+  
+    #<strong>OR</strong>(pattern1, pattern2, *patterns)  &#x21d2; <tt>Proc</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Product returns ‘true` when matched even one pattern</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>pattern1</span>
+      
+      
+        <span class='type'>(<tt>Proc</tt>, <tt>Method</tt>, <tt>#===</tt>)</span>
+      
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>pattern2</span>
+      
+      
+        <span class='type'>(<tt>Proc</tt>, <tt>Method</tt>, <tt>#===</tt>)</span>
+      
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>patterns</span>
+      
+      
+        <span class='type'>(<tt>Array&lt;Proc, Method, #===&gt;</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Proc</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/eqq/buildable.rb', line 82</span>
+
+<span class='kw'>def</span> <span class='const'>OR</span><span class='lparen'>(</span><span class='id identifier rubyid_pattern1'>pattern1</span><span class='comma'>,</span> <span class='id identifier rubyid_pattern2'>pattern2</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_patterns'>patterns</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_patterns'>patterns</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='id identifier rubyid_pattern1'>pattern1</span><span class='comma'>,</span> <span class='id identifier rubyid_pattern2'>pattern2</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_patterns'>patterns</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span>
+  <span class='const'><span class='object_link'><a href="" title="Eqq::Buildable (module)">Buildable</a></span></span><span class='period'>.</span><span class='id identifier rubyid_validate_patterns'><span class='object_link'><a href="#validate_patterns-class_method" title="Eqq::Buildable.validate_patterns (method)">validate_patterns</a></span></span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_patterns'>patterns</span><span class='rparen'>)</span>
+
+  <span class='id identifier rubyid_product'>product</span> <span class='op'>=</span> <span class='tlambda'>-&gt;</span><span class='id identifier rubyid_v'>v</span> <span class='tlambeg'>{</span>
+    <span class='id identifier rubyid_patterns'>patterns</span><span class='period'>.</span><span class='id identifier rubyid_any?'>any?</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_pattern'>pattern</span><span class='op'>|</span> <span class='id identifier rubyid_pattern'>pattern</span> <span class='op'>===</span> <span class='id identifier rubyid_v'>v</span> <span class='rbrace'>}</span>
+  <span class='rbrace'>}</span>
+  <span class='const'><span class='object_link'><a href="" title="Eqq::Buildable (module)">Buildable</a></span></span><span class='period'>.</span><span class='id identifier rubyid_define_inspect_on'><span class='object_link'><a href="#define_inspect_on-class_method" title="Eqq::Buildable.define_inspect_on (method)">define_inspect_on</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_product'>product</span><span class='comma'>,</span> <span class='label'>name:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>OR</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='label'>arguments:</span> <span class='id identifier rubyid_patterns'>patterns</span><span class='rparen'>)</span>
+
+  <span class='id identifier rubyid_product'>product</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="QUIET-instance_method">
+  
+    #<strong>QUIET</strong>(pattern1, *patterns)  &#x21d2; <tt>Proc</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Product returns ‘true` when all patterns did not raise any exception</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>pattern1</span>
+      
+      
+        <span class='type'>(<tt>Proc</tt>, <tt>Method</tt>, <tt>#===</tt>)</span>
+      
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>patterns</span>
+      
+      
+        <span class='type'>(<tt>Array&lt;Proc, Method, #===&gt;</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Proc</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/eqq/buildable.rb', line 189</span>
+
+<span class='kw'>def</span> <span class='const'>QUIET</span><span class='lparen'>(</span><span class='id identifier rubyid_pattern1'>pattern1</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_patterns'>patterns</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_patterns'>patterns</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='id identifier rubyid_pattern1'>pattern1</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_patterns'>patterns</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span>
+  <span class='const'><span class='object_link'><a href="" title="Eqq::Buildable (module)">Buildable</a></span></span><span class='period'>.</span><span class='id identifier rubyid_validate_patterns'><span class='object_link'><a href="#validate_patterns-class_method" title="Eqq::Buildable.validate_patterns (method)">validate_patterns</a></span></span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_patterns'>patterns</span><span class='rparen'>)</span>
+
+  <span class='id identifier rubyid_product'>product</span> <span class='op'>=</span> <span class='tlambda'>-&gt;</span><span class='id identifier rubyid_v'>v</span> <span class='tlambeg'>{</span>
+    <span class='id identifier rubyid_patterns'>patterns</span><span class='period'>.</span><span class='id identifier rubyid_all?'>all?</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_pattern'>pattern</span><span class='op'>|</span>
+      <span class='kw'>begin</span>
+        <span class='id identifier rubyid_pattern'>pattern</span> <span class='op'>===</span> <span class='id identifier rubyid_v'>v</span>
+      <span class='kw'>rescue</span> <span class='const'>Exception</span>
+        <span class='kw'>false</span>
+      <span class='kw'>else</span>
+        <span class='kw'>true</span>
+      <span class='kw'>end</span>
+    <span class='rbrace'>}</span>
+  <span class='rbrace'>}</span>
+
+  <span class='const'><span class='object_link'><a href="" title="Eqq::Buildable (module)">Buildable</a></span></span><span class='period'>.</span><span class='id identifier rubyid_define_inspect_on'><span class='object_link'><a href="#define_inspect_on-class_method" title="Eqq::Buildable.define_inspect_on (method)">define_inspect_on</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_product'>product</span><span class='comma'>,</span> <span class='label'>name:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>QUIET</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='label'>arguments:</span> <span class='id identifier rubyid_patterns'>patterns</span><span class='rparen'>)</span>
+
+  <span class='id identifier rubyid_product'>product</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="RESCUE-instance_method">
+  
+    #<strong>RESCUE</strong>(mod, pattern)  &#x21d2; <tt>Proc</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Product returns ‘true` when the pattern raises the exception</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>mod</span>
+      
+      
+        <span class='type'>(<tt>Module</tt>)</span>
+      
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>pattern</span>
+      
+      
+        <span class='type'>(<tt>Proc</tt>, <tt>Method</tt>, <tt>#===</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Proc</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>ArgumentError</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/eqq/buildable.rb', line 215</span>
+
+<span class='kw'>def</span> <span class='const'>RESCUE</span><span class='lparen'>(</span><span class='id identifier rubyid_mod'>mod</span><span class='comma'>,</span> <span class='id identifier rubyid_pattern'>pattern</span><span class='rparen'>)</span>
+  <span class='const'><span class='object_link'><a href="" title="Eqq::Buildable (module)">Buildable</a></span></span><span class='period'>.</span><span class='id identifier rubyid_validate_patterns'><span class='object_link'><a href="#validate_patterns-class_method" title="Eqq::Buildable.validate_patterns (method)">validate_patterns</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_pattern'>pattern</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span> <span class='kw'>unless</span> <span class='const'>Module</span> <span class='op'>===</span> <span class='id identifier rubyid_mod'>mod</span>
+
+  <span class='id identifier rubyid_product'>product</span> <span class='op'>=</span> <span class='tlambda'>-&gt;</span><span class='id identifier rubyid_v'>v</span> <span class='tlambeg'>{</span>
+    <span class='kw'>begin</span>
+      <span class='id identifier rubyid_pattern'>pattern</span> <span class='op'>===</span> <span class='id identifier rubyid_v'>v</span>
+      <span class='kw'>false</span>
+    <span class='kw'>rescue</span> <span class='id identifier rubyid_mod'>mod</span>
+      <span class='kw'>true</span>
+    <span class='kw'>rescue</span> <span class='const'>Exception</span>
+      <span class='kw'>false</span>
+    <span class='kw'>end</span>
+  <span class='rbrace'>}</span>
+
+  <span class='const'><span class='object_link'><a href="" title="Eqq::Buildable (module)">Buildable</a></span></span><span class='period'>.</span><span class='id identifier rubyid_define_inspect_on'><span class='object_link'><a href="#define_inspect_on-class_method" title="Eqq::Buildable.define_inspect_on (method)">define_inspect_on</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_product'>product</span><span class='comma'>,</span> <span class='label'>name:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>RESCUE</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='label'>arguments:</span> <span class='lbracket'>[</span><span class='id identifier rubyid_mod'>mod</span><span class='comma'>,</span> <span class='id identifier rubyid_pattern'>pattern</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+
+  <span class='id identifier rubyid_product'>product</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="SAME-instance_method">
+  
+    #<strong>SAME</strong>(obj)  &#x21d2; <tt>Proc</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Product returns ‘true` when matched with `#equal?`</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>obj</span>
+      
+      
+        <span class='type'>(<tt>#equal?</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Proc</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+149
+150
+151
+152
+153</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/eqq/buildable.rb', line 149</span>
+
+<span class='kw'>def</span> <span class='const'>SAME</span><span class='lparen'>(</span><span class='id identifier rubyid_obj'>obj</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_product'>product</span> <span class='op'>=</span> <span class='tlambda'>-&gt;</span><span class='id identifier rubyid_v'>v</span> <span class='tlambeg'>{</span> <span class='id identifier rubyid_obj'>obj</span><span class='period'>.</span><span class='id identifier rubyid_equal?'>equal?</span><span class='lparen'>(</span><span class='id identifier rubyid_v'>v</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
+  <span class='const'><span class='object_link'><a href="" title="Eqq::Buildable (module)">Buildable</a></span></span><span class='period'>.</span><span class='id identifier rubyid_define_inspect_on'><span class='object_link'><a href="#define_inspect_on-class_method" title="Eqq::Buildable.define_inspect_on (method)">define_inspect_on</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_product'>product</span><span class='comma'>,</span> <span class='label'>name:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>SAME</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='label'>arguments:</span> <span class='lbracket'>[</span><span class='id identifier rubyid_obj'>obj</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_product'>product</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="SEND-instance_method">
+  
+    #<strong>SEND</strong>(name, pattern)  &#x21d2; <tt>Proc</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Basically provided for Enumerable</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>name</span>
+      
+      
+        <span class='type'>(<tt>Symbol</tt>, <tt>String</tt>, <tt>#to_sym</tt>)</span>
+      
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>pattern</span>
+      
+      
+        <span class='type'>(<tt>Proc</tt>, <tt>Method</tt>, <tt>#===</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Proc</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/eqq/buildable.rb', line 240</span>
+
+<span class='kw'>def</span> <span class='const'>SEND</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_pattern'>pattern</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_name'>name</span> <span class='op'>=</span> <span class='lparen'>(</span>
+    <span class='kw'>begin</span>
+      <span class='id identifier rubyid_name'>name</span><span class='period'>.</span><span class='id identifier rubyid_to_sym'>to_sym</span>
+    <span class='kw'>rescue</span> <span class='const'>NoMethodError</span>
+      <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span>
+    <span class='kw'>end</span>
+  <span class='rparen'>)</span>
+  <span class='const'><span class='object_link'><a href="" title="Eqq::Buildable (module)">Buildable</a></span></span><span class='period'>.</span><span class='id identifier rubyid_validate_patterns'><span class='object_link'><a href="#validate_patterns-class_method" title="Eqq::Buildable.validate_patterns (method)">validate_patterns</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_pattern'>pattern</span><span class='rparen'>)</span>
+
+  <span class='id identifier rubyid_product'>product</span> <span class='op'>=</span> <span class='tlambda'>-&gt;</span><span class='id identifier rubyid_v'>v</span> <span class='tlambeg'>{</span>
+    <span class='id identifier rubyid_v'>v</span><span class='period'>.</span><span class='id identifier rubyid___send__'>__send__</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_pattern'>pattern</span><span class='rparen'>)</span>
+  <span class='rbrace'>}</span>
+
+  <span class='const'><span class='object_link'><a href="" title="Eqq::Buildable (module)">Buildable</a></span></span><span class='period'>.</span><span class='id identifier rubyid_define_inspect_on'><span class='object_link'><a href="#define_inspect_on-class_method" title="Eqq::Buildable.define_inspect_on (method)">define_inspect_on</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_product'>product</span><span class='comma'>,</span> <span class='label'>name:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>SEND</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='label'>arguments:</span> <span class='lbracket'>[</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_pattern'>pattern</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+
+  <span class='id identifier rubyid_product'>product</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="XOR-instance_method">
+  
+    #<strong>XOR</strong>(pattern1, pattern2)  &#x21d2; <tt>Proc</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Product returns ‘true` when matched one of the pattern, when matched both returns `false`</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>pattern1</span>
+      
+      
+        <span class='type'>(<tt>Proc</tt>, <tt>Method</tt>, <tt>#===</tt>)</span>
+      
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>pattern2</span>
+      
+      
+        <span class='type'>(<tt>Proc</tt>, <tt>Method</tt>, <tt>#===</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Proc</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/eqq/buildable.rb', line 109</span>
+
+<span class='kw'>def</span> <span class='const'>XOR</span><span class='lparen'>(</span><span class='id identifier rubyid_pattern1'>pattern1</span><span class='comma'>,</span> <span class='id identifier rubyid_pattern2'>pattern2</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_patterns'>patterns</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='id identifier rubyid_pattern1'>pattern1</span><span class='comma'>,</span> <span class='id identifier rubyid_pattern2'>pattern2</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span>
+  <span class='const'><span class='object_link'><a href="" title="Eqq::Buildable (module)">Buildable</a></span></span><span class='period'>.</span><span class='id identifier rubyid_validate_patterns'><span class='object_link'><a href="#validate_patterns-class_method" title="Eqq::Buildable.validate_patterns (method)">validate_patterns</a></span></span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_patterns'>patterns</span><span class='rparen'>)</span>
+
+  <span class='id identifier rubyid_product'>product</span> <span class='op'>=</span> <span class='tlambda'>-&gt;</span><span class='id identifier rubyid_v'>v</span> <span class='tlambeg'>{</span>
+    <span class='id identifier rubyid_patterns'>patterns</span><span class='period'>.</span><span class='id identifier rubyid_one?'>one?</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_pattern'>pattern</span><span class='op'>|</span> <span class='id identifier rubyid_pattern'>pattern</span> <span class='op'>===</span> <span class='id identifier rubyid_v'>v</span> <span class='rbrace'>}</span>
+  <span class='rbrace'>}</span>
+  <span class='const'><span class='object_link'><a href="" title="Eqq::Buildable (module)">Buildable</a></span></span><span class='period'>.</span><span class='id identifier rubyid_define_inspect_on'><span class='object_link'><a href="#define_inspect_on-class_method" title="Eqq::Buildable.define_inspect_on (method)">define_inspect_on</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_product'>product</span><span class='comma'>,</span> <span class='label'>name:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>XOR</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='label'>arguments:</span> <span class='id identifier rubyid_patterns'>patterns</span><span class='rparen'>)</span>
+
+  <span class='id identifier rubyid_product'>product</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+      <div id="footer">
+  Generated on Mon May  9 19:20:29 2022 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.27 (ruby-3.1.2).
+</div>
+
+    </div>
+  </body>
+</html>
