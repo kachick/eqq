@@ -106,9 +106,6 @@ module Eqq
   # Returns `true` when given object has patternable signature
   def self.pattern?: (untyped object) -> bool
 
-  # Alias of `pattern?`. But deperecated. Do not use in your code anymore.
-  def self.valid?: (untyped object) -> bool
-
   # Returns `true` when given object has correct signature as a product of builders
   # Basically this is a private API. Should not be used in your code.
   def self.satisfy?: (untyped object) -> bool

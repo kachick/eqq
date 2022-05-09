@@ -28,11 +28,6 @@ module Eqq
       end
     end
 
-    # @deprecated Use {pattern?} instead. This will be dropped since `0.1.0`
-    def valid?(object)
-      pattern?(object)
-    end
-
     # @api private
     def satisfy?(object)
       (Proc === object) && object.lambda? && (object.arity == 1) && object.respond_to?(:inspect)

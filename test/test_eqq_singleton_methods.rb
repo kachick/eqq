@@ -22,22 +22,6 @@ class TestEqqSingletonMethods < Test::Unit::TestCase
     assert_false(Eqq.pattern?(BasicObject.new))
   end
 
-  def test_valid?
-    expectation_by_given_value = {
-      ->{} => false,
-      ->x, y{} => false,
-      ->x {} => true,
-      Object.new => true,
-      Integer => true
-    }
-
-    expectation_by_given_value.each_pair do |given, expectation|
-      assert_equal(expectation, Eqq.valid?(given), "given: #{given}")
-    end
-
-    assert_false(Eqq.valid?(BasicObject.new))
-  end
-
   def test_build
     builders = %i[
       OR
