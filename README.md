@@ -117,7 +117,7 @@ Reuse as you wish!
 ### Best fit for RSpec's `satisfy` matcher too
 
 All builders actually generate a `Proc (lambda)` instance.
-The signature will fit for RSpec's built-in [`satisfy` matcher](https://relishapp.com/rspec/rspec-expectations/v/3-10/docs/built-in-matchers/satisfy-matcher) too.
+The signature will fit for RSpec's built-in ["satisfy" matcher](https://relishapp.com/rspec/rspec-expectations/v/3-10/docs/built-in-matchers/satisfy-matcher) too.
 
 ```ruby
 RSpec.describe RSpec::Matchers::BuiltIn::Satisfy do
@@ -153,4 +153,4 @@ When you felt annoy to write `Eqq` in many place, some ways exist.
 
 ## NOTE
 
-* [`eqq` is the implementation name of `#===` in CRuby](https://github.com/ruby/ruby/blob/2a685da1fcd928530509e99f5edb4117bc377994/range.c#L1859)
+* ["eqq" is the implementation name of "#===" in CRuby](https://github.com/ruby/ruby/blob/2a685da1fcd928530509e99f5edb4117bc377994/range.c#L1859)
