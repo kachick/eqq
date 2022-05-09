@@ -50,12 +50,6 @@ module Eqq
 
       pattern
     end
-
-    # @deprecated Use {build} instead. This will be dropped since `0.1.0`
-    # @return [Proc]
-    def define(&block)
-      build(&block)
-    end
   end
 end
 
