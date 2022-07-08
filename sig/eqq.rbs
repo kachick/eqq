@@ -1,5 +1,8 @@
 # Pattern objects builder
 module Eqq
+  type patternable_lambda = ^(untyped object) -> bool
+  type product = patternable_lambda & _Inspectable & _Patternable
+
   interface _Patternable
     def ===: (untyped object) -> bool
   end
@@ -13,9 +16,6 @@ module Eqq
   end
 
   module Buildable
-    type patternable_lambda = ^(untyped object) -> bool
-    type product = patternable_lambda & _Inspectable
-
     # A private constant. Should not be used in your code.
     EQQ_BUILTIN_ANYTHING: product
 
@@ -111,5 +111,6 @@ module Eqq
   def self.satisfy?: (untyped object) -> bool
 
   # In the block scope, all builder methods can be used without receiver
-  def self.build:  { () -> _Patternable } -> _Patternable
+  # def self.build:  [ U ] (*U) { (*U, ?dsl: DSLScope) -> product } -> product
+  def self.build:  [ U ] (U, U) { (U, U, ?dsl: DSLScope) -> product } -> product
 end

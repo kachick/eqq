@@ -30,20 +30,24 @@ module Eqq
 
     # @api private
     def satisfy?(object)
-      (Proc === object) && object.lambda? && (object.arity == 1) && object.respond_to?(:inspect)
+      (Proc === object) && object.lambda? && (object.arity == 1) && object.respond_to?(:===) && object.respond_to?(:inspect)
     end
 
     # In the block scope, all builder methods can be used without receiver
     #
     # @return [Proc]
     # @raise [InvalidProductError] if the return value is not looks to be built with builders
-    def build(&block)
-      raise ArgumentError, 'might be mis used the `Eqq.build` in your code' unless block
+    # def build(*args, &block)
+    def build(arg1, arg2, &block)
+      raise ArgumentError, 'might be mis used the `Eqq.build` in your code - missing block' unless block_given?
 
-      pattern = DSLScope.new.instance_exec(&block)
-      raise InvalidProductError, 'might be mis used the `Eqq.build` in your code' unless satisfy?(pattern)
+      dsl = DSLScope.new
+      # product = dsl.instance_exec(*args, dsl: dsl, &block)
+      prod
+      361015uct = dsl.instance_exec(arg1, arg2, dsl: dsl, &block)
+      raise InvalidProductError, 'might be mis used the `Eqq.build` in your code - malformed result' unless satisfy?(product)
 
-      pattern
+      product
     end
   end
 end
