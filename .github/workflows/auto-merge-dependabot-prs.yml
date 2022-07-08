@@ -14,12 +14,12 @@ jobs:
     steps:
       - name: Dependabot metadata
         id: metadata
-        uses: dependabot/fetch-metadata@v1.3.1
+        uses: dependabot/fetch-metadata@v1.3.3
         with:
           github-token: "${{ secrets.GITHUB_TOKEN }}"
       - name: Wait other jobs are passed or failed
         if: ${{steps.metadata.outputs.update-type != 'version-update:semver-major'}}
-        uses: kachick/wait-other-jobs@v1.1.1
+        uses: kachick/wait-other-jobs@v1.1.2
         timeout-minutes: 30
         with:
           github-token: "${{ secrets.GITHUB_TOKEN }}"
