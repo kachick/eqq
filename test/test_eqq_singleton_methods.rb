@@ -57,8 +57,13 @@ class TestEqqSingletonMethods < Test::Unit::TestCase
       Eqq.build
     end
 
-    assert_raise(ArgumentError) do
-      Eqq.build(42) { OR(42, String) }
+    # assert_raise(ArgumentError) do
+    #   Eqq.build(42) { OR(42, String) }
+    # end
+
+    Eqq.build(42, 43) do |x, y, z, dsl:|
+      binding.irb
+      OR(42, String)
     end
   end
 
