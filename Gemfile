@@ -15,7 +15,7 @@ group :development do
   gem 'rbs', '~> 2.7.0', require: false
   gem 'steep', require: false
   gem 'yard', '~> 0.9.28', require: false
-  gem 'rubocop', '~> 1.38.0', require: false
+  gem 'rubocop', '~> 1.39.0', require: false
   gem 'rubocop-rake', '~> 0.6.0', require: false
   gem 'rubocop-performance', '~> 1.15.0', require: false
   gem 'rubocop-rubycw', '~> 0.1.6', require: false
