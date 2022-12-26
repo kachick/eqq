@@ -1,7 +1,7 @@
 # eqq
 
 ![Build Status](https://github.com/kachick/eqq/actions/workflows/test_behaviors.yml/badge.svg?branch=main)
-[![Gem Version](https://badge.fury.io/rb/eqq.png)](http://badge.fury.io/rb/eqq)
+[![Gem Version](https://badge.fury.io/rb/eqq.svg)](http://badge.fury.io/rb/eqq)
 
 Pattern objects builder
 
