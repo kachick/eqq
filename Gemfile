@@ -17,7 +17,7 @@ group :development do
   gem 'yard', '~> 0.9.32', require: false
   gem 'rubocop', '~> 1.49.0', require: false
   gem 'rubocop-rake', '~> 0.6.0', require: false
-  gem 'rubocop-performance', '~> 1.16.0', require: false
+  gem 'rubocop-performance', '~> 1.17.1', require: false
 end
 
 group :test do
