@@ -3,7 +3,7 @@
 
 lib_name = 'eqq'
 
-require_relative './lib/eqq/version'
+require_relative 'lib/eqq/version'
 repository_url = "https://github.com/kachick/#{lib_name}"
 
 Gem::Specification.new do |gem|
