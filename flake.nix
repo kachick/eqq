@@ -1,6 +1,6 @@
 {
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-22.11";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.05";
     nixpkgs-ruby.url = "github:bobvanderlinden/nixpkgs-ruby";
     nixpkgs-ruby.inputs.nixpkgs.follows = "nixpkgs";
     flake-utils.url = "github:numtide/flake-utils";
@@ -14,23 +14,16 @@
           file = ./.ruby-version;
           inherit system;
         };
-
-        gems = pkgs.bundlerEnv {
-          name = "gemset";
-          inherit ruby;
-          gemfile = ./Gemfile;
-          lockfile = ./Gemfile.lock;
-          gemset = ./gemset.nix;
-          groups = [ "default" "production" "development" "test" ];
-        };
       in
       {
         devShell = with pkgs;
           mkShell {
             buildInputs = [
-              # gems
               ruby
-              bundix
+              dprint
+              nil
+              nixpkgs-fmt
+              actionlint
             ];
           };
       });
