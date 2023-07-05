@@ -7,7 +7,7 @@ gemspec
 
 group :development, :test do
   gem 'rake', '~> 13.0.6'
-  gem 'irb', '~> 1.7.0'
+  gem 'irb', '~> 1.7.1'
   gem 'irb-power_assert', '0.1.1'
 end
 
@@ -15,7 +15,7 @@ group :development do
   gem 'rbs', '~> 3.1.0', require: false
   gem 'steep', require: false
   gem 'yard', '~> 0.9.34', require: false
-  gem 'rubocop', '~> 1.53.1', require: false
+  gem 'rubocop', '~> 1.54.0', require: false
   gem 'rubocop-rake', '~> 0.6.0', require: false
   gem 'rubocop-performance', '~> 1.18.0', require: false
 end
