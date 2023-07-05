@@ -16,7 +16,7 @@
         };
       in
       {
-        devShell = with pkgs;
+        devShells.default = with pkgs;
           mkShell {
             buildInputs = [
               ruby
