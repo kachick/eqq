@@ -1,6 +1,7 @@
 *.gem
 *.rbc
-.bundle
+.bundle/*
+!.bundle/config
 .config
 .DS_Store
 coverage

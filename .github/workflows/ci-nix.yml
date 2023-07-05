@@ -30,6 +30,8 @@ jobs:
       - run: nix flake check
       - run: nix develop --command ./bin/setup
       - name: Log current versions
-        run: nix develop --command rake inspect_dependencies
-      - name: Tests
-        run: nix develop --command rake check_non_ruby
+        run: nix develop --command bundle exec rake inspect_dependencies
+      - name: Test with external depdendencies
+        run: nix develop --command bundle exec rake check_non_ruby
+      - name: Test with Ruby
+        run: nix develop --command bundle exec rake simulate_ci
