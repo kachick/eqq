@@ -21,10 +21,10 @@ Using several tools, not limited to the Ruby ecosystem.
 An example is [dprint](https://github.com/dprint/dprint).
 
 This project is providing nix flake config for setup around them.
-After installing [Nix](https://nixos.org/) package manager and [direnv](https://github.com/direnv/direnv), you can do following.
+After installing [Nix](https://nixos.org/) package manager, you can do following.
 
 ```console
-$ direnv allow
+$ nix develop
 $ dprint check
 $ actionlint
 ...
