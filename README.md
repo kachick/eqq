@@ -80,15 +80,15 @@ All products can be called as `pattern === other`.
 
 This signature will fit in most Ruby code.
 
-* `case ~ when` syntax
-* Enumerable#grep
-* Enumerable#grep_v
-* Enumerable#all?
-* Enumerable#any?
-* Enumerable#none?
-* Enumerable#one?
-* Enumerable#slice_after
-* Enumerable#slice_before
+- `case ~ when` syntax
+- Enumerable#grep
+- Enumerable#grep_v
+- Enumerable#all?
+- Enumerable#any?
+- Enumerable#none?
+- Enumerable#one?
+- Enumerable#slice_after
+- Enumerable#slice_before
 
 They can take this interface as the `pattern`.
 
@@ -97,22 +97,22 @@ Reuse as you wish!
 
 ### Builders
 
-* OR(*patterns) - Product returns `true` when matched even one pattern
-* AND(*patterns) - Product returns `true` when matched all patterns
-* NOT(pattern) - Product returns `true` when not matched the pattern
-* CAN(*method_names) - Product returns `true` when it has all of the methods (checked with `respond_to?`)
-* RESCUE(exception_class/module, pattern) - Product returns `true` when the pattern raises the exception
-* QUIET(*patterns) - Product returns `true` when all patterns did not raise any exception
-* EQ(object) - Product returns `true` when matched with `#==`
-* SAME(object) - Product returns `true` when matched with `#equal?`
-* SEND(name, pattern) - Basically provided for Enumerable
-* BOOLEAN() - Product returns `true` when matched to `true` or `false`
-* NIL() - Product returns `true` when matched to `nil` (Not consider `nil?`)
-* ANYTHING() - Product returns `true`, always `true`
-* NEVER() - Product returns `false`, always `false`
-* XOR(pattern1, pattern2) - Product returns `true` when matched one of the pattern, when matched both returns `false`
-* NAND(*patterns) - Product is an inverted `AND`
-* NOR(*patterns) - Product is an inverted `OR`
+- OR(*patterns) - Product returns `true` when matched even one pattern
+- AND(*patterns) - Product returns `true` when matched all patterns
+- NOT(pattern) - Product returns `true` when not matched the pattern
+- CAN(*method_names) - Product returns `true` when it has all of the methods (checked with `respond_to?`)
+- RESCUE(exception_class/module, pattern) - Product returns `true` when the pattern raises the exception
+- QUIET(*patterns) - Product returns `true` when all patterns did not raise any exception
+- EQ(object) - Product returns `true` when matched with `#==`
+- SAME(object) - Product returns `true` when matched with `#equal?`
+- SEND(name, pattern) - Basically provided for Enumerable
+- BOOLEAN() - Product returns `true` when matched to `true` or `false`
+- NIL() - Product returns `true` when matched to `nil` (Not consider `nil?`)
+- ANYTHING() - Product returns `true`, always `true`
+- NEVER() - Product returns `false`, always `false`
+- XOR(pattern1, pattern2) - Product returns `true` when matched one of the pattern, when matched both returns `false`
+- NAND(*patterns) - Product is an inverted `AND`
+- NOR(*patterns) - Product is an inverted `OR`
 
 ### Best fit for RSpec's `satisfy` matcher too
 
@@ -138,19 +138,19 @@ end
 
 When you felt annoy to write `Eqq` in many place, some ways exist.
 
-* `Eqq.build(&block)` - In the block scope, all builder methods can be used without receiver
-* `extend Eqq::Buildable` - In the class/module, all builders can be used as class methods
-* `include Eqq::Buildable` - In the class/module, all builders can be used as instance methods
+- `Eqq.build(&block)` - In the block scope, all builder methods can be used without receiver
+- `extend Eqq::Buildable` - In the class/module, all builders can be used as class methods
+- `include Eqq::Buildable` - In the class/module, all builders can be used as instance methods
 
 ### Signature
 
-* This gem provides [ruby/rbs](https://github.com/ruby/rbs) signature file
+- This gem provides [ruby/rbs](https://github.com/ruby/rbs) signature file
 
 ## Links
 
-* [Repository](https://github.com/kachick/eqq)
-* [API documents](https://kachick.github.io/eqq)
+- [Repository](https://github.com/kachick/eqq)
+- [API documents](https://kachick.github.io/eqq)
 
 ## NOTE
 
-* ["eqq" is the implementation name of "#===" in CRuby](https://github.com/ruby/ruby/blob/2a685da1fcd928530509e99f5edb4117bc377994/range.c#L1859)
+- ["eqq" is the implementation name of "#===" in CRuby](https://github.com/ruby/ruby/blob/2a685da1fcd928530509e99f5edb4117bc377994/range.c#L1859)

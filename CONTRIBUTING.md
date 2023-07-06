@@ -1,8 +1,8 @@
 # How to contribute
 
-* Reporting bugs
-* Suggesting features
-* Creating PRs
+- Reporting bugs
+- Suggesting features
+- Creating PRs
 
 Welcome all of the contributions!
 
@@ -17,7 +17,20 @@ $ ./bin/setup
 # Installed!
 ```
 
-## Feel the latest version with REPL
+Using several tools, not limited to the Ruby ecosystem.
+An example is [dprint](https://github.com/dprint/dprint).
+
+This project is providing nix flake config for setup around them.
+After installing [Nix](https://nixos.org/) package manager, you can do following.
+
+```console
+$ nix develop
+$ dprint check
+$ actionlint
+...
+```
+
+## Try latest version with REPL
 
 ```console
 $ ./bin/console

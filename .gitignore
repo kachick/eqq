@@ -1,9 +1,9 @@
 *.gem
 *.rbc
-.bundle
+.bundle/*
+!.bundle/config
 .config
 .DS_Store
-.ruby-version
 coverage
 coverage.data
 InstalledFiles
@@ -36,3 +36,6 @@ doc/
 *.bak
 tool/
 *\#*
+
+!flake.lock
+.direnv

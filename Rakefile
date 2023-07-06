@@ -62,3 +62,16 @@ task :view_packaging_files do
   end
   sh 'rm -rf ./pkg'
 end
+
+desc 'Print dependencies'
+task :inspect_dependencies do
+  sh 'ruby --version'
+  sh 'dprint --version'
+  sh 'actionlint --version'
+end
+
+desc 'Tests except ruby'
+task :check_non_ruby do
+  sh 'dprint check'
+  sh 'actionlint'
+end
