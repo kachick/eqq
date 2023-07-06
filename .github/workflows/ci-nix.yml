@@ -26,7 +26,7 @@ jobs:
     timeout-minutes: 30
     steps:
       - uses: actions/checkout@v3
-      - uses: DeterminateSystems/nix-installer-action@v2
+      - uses: DeterminateSystems/nix-installer-action@v4
       - uses: DeterminateSystems/magic-nix-cache-action@v2
       - run: nix flake check
       - run: nix develop --command ./bin/setup
