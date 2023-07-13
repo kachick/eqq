@@ -53,7 +53,7 @@ class TestEqqSingletonMethods < Test::Unit::TestCase
     assert_product_signature(pattern)
     assert_equal([42, 'string'], [42, nil, BasicObject.new, 'string'].grep(pattern))
 
-    assert_raise_with_message(ArgumentError, /might be mis used .+ in your code/) do
+    assert_raise_with_message(ArgumentError, /might be misused .+ in your code/) do
       Eqq.build
     end
 
@@ -70,7 +70,7 @@ class TestEqqSingletonMethods < Test::Unit::TestCase
     'When the object dose not have `#inspect`' => Eqq.AND(Integer, 42).tap { |product| product.singleton_class.undef_method(:inspect) }
   )
   def test_build_raises_exceptions_for_unexpected_operations(result)
-    assert_raise_with_message(Eqq::InvalidProductError, /might be mis used .+ in your code/) do
+    assert_raise_with_message(Eqq::InvalidProductError, /might be misused .+ in your code/) do
       Eqq.build { result }
     end
   end

@@ -3,11 +3,5 @@
   "editor.formatOnSave": true,
   "[nix]": {
     "editor.defaultFormatter": "jnoortheen.nix-ide"
-  },
-  "cSpell.words": [
-    "cachix",
-    "dprint",
-    "nixos",
-    "nixpkgs"
-  ]
+  }
 }
