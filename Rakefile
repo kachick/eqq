@@ -67,11 +67,13 @@ desc 'Print dependencies'
 task :inspect_dependencies do
   sh 'ruby --version'
   sh 'dprint --version'
+  sh 'typos --version'
   sh 'actionlint --version'
 end
 
 desc 'Tests except ruby'
 task :check_non_ruby do
   sh 'dprint check'
+  sh 'typos'
   sh 'actionlint'
 end

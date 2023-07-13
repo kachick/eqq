@@ -23,6 +23,7 @@
               dprint
               nil
               nixpkgs-fmt
+              typos
               actionlint
             ];
           };
