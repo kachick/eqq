@@ -1,6 +1,6 @@
 {
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.05";
+    nixpkgs.url = "github:NixOS/nixpkgs/b5616857af88e74749862555ac46fe429192cc8c";
     nixpkgs-ruby.url = "github:bobvanderlinden/nixpkgs-ruby";
     nixpkgs-ruby.inputs.nixpkgs.follows = "nixpkgs";
     flake-utils.url = "github:numtide/flake-utils";
@@ -21,7 +21,7 @@
             buildInputs = [
               ruby
               dprint
-              nil
+              nixd
               nixpkgs-fmt
               typos
               actionlint
