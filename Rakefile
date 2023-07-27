@@ -33,19 +33,9 @@ RSpec::Core::RakeTask.new(:spec) do |rt|
 end
 
 desc 'Validate signatures, this should be passed'
-multitask validate_signatures: [:'signature:validate_yard', :'signature:validate_rbs']
+multitask validate_signatures: [:'signature:validate_yard']
 
 namespace :signature do
-  desc 'Validate `rbs` syntax, this should be passed'
-  task :validate_rbs do
-    sh 'bundle exec rbs -I sig validate'
-  end
-
-  desc 'Check `rbs` definition with `steep`, but it might be fault from some reasons'
-  task :check_false_positive do
-    sh 'bundle exec steep check --log-level=fatal'
-  end
-
   desc 'Generate YARD docs for the syntax check'
   task :validate_yard do
     sh "bundle exec yard --fail-on-warning #{'--no-progress' if ENV['CI']}"

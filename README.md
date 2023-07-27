@@ -142,10 +142,6 @@ When you felt annoy to write `Eqq` in many place, some ways exist.
 - `extend Eqq::Buildable` - In the class/module, all builders can be used as class methods
 - `include Eqq::Buildable` - In the class/module, all builders can be used as instance methods
 
-### Signature
-
-- This gem provides [ruby/rbs](https://github.com/ruby/rbs) signature file
-
 ## Links
 
 - [Repository](https://github.com/kachick/eqq)

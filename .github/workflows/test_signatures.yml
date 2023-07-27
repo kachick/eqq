@@ -6,26 +6,22 @@ on:
     paths:
       - '.github/workflows/test_signatures.yml'
       - 'lib/**'
-      - 'sig/**'
       - 'exe/**'
       - '**.md'
       - '**.txt'
       - '**.gemspec'
       - 'Gemfile'
-      - 'Steepfile'
       - '.yardopts'
       - 'Rakefile'
   pull_request:
     paths:
       - '.github/workflows/test_signatures.yml'
       - 'lib/**'
-      - 'sig/**'
       - 'exe/**'
       - '**.md'
       - '**.txt'
       - '**.gemspec'
       - 'Gemfile'
-      - 'Steepfile'
       - '.yardopts'
       - 'Rakefile'
 jobs:
