@@ -64,6 +64,6 @@ end
 desc 'Tests except ruby'
 task :check_non_ruby do
   sh 'dprint check'
-  sh 'typos'
+  sh 'typos . .github .vscode'
   sh 'actionlint'
 end
