@@ -13,8 +13,9 @@ At first, you should install development dependencies
 ```console
 $ git clone git@github.com:kachick/eqq.git
 $ cd ./eqq
-$ ./bin/setup
-# Installed!
+$ bundle install
+...
+Bundled gems are installed into `./vendor/bundle
 ```
 
 Using several tools, not limited to the Ruby ecosystem.
