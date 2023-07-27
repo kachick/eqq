@@ -19,7 +19,7 @@ desc 'Test behaviors, this should be passed'
 task test_behaviors: [:test, :spec]
 
 desc 'Simulate CI results in local machine as possible'
-multitask simulate_ci: [:test_behaviors, :validate_signatures, :rubocop]
+multitask simulate_ci: [:test_behaviors, :validate_signatures, :rubocop, :check_non_ruby]
 
 Rake::TestTask.new(:test) do |tt|
   tt.pattern = 'test/**/test_*.rb'
