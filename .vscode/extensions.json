@@ -3,8 +3,8 @@
     "editorconfig.editorconfig",
     "github.vscode-github-actions",
     "tekumara.typos-vscode",
-    "koichisasada.vscode-rdbg",
     "dprint.dprint",
+    "rubocop.vscode-rubocop",
     "jnoortheen.nix-ide"
   ]
 }
