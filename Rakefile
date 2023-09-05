@@ -54,7 +54,7 @@ task :view_packaging_files do
 end
 
 desc 'Print dependencies'
-task :inspect_dependencies do
+task :deps do
   sh 'ruby --version'
   sh 'dprint --version'
   sh 'typos --version'
