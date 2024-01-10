@@ -7,7 +7,7 @@ Pattern objects builder
 
 ## Usage
 
-Require Ruby 3.1 or later
+Require Ruby 3.2 or higher
 
 Add below code into your Gemfile
 
