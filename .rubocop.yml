@@ -877,10 +877,6 @@ Lint/InheritException:
 Lint/RedundantStringCoercion:
   Enabled: false
 
-Lint/StructNewOverride:
-  Exclude:
-    - 'test/many_data/fixtures/example.rb'
-
 Lint/BinaryOperatorWithIdenticalOperands:
   Exclude:
     - 'test/**/*'
