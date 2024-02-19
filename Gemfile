@@ -19,7 +19,7 @@ group :development do
 end
 
 group :test do
-  gem 'test-unit', '~> 3.6.1'
+  gem 'test-unit', '~> 3.6.2'
   gem 'rspec', '~> 3.13.0'
   gem 'rspec-matchers-power_assert_matchers', '0.2.0'
   gem 'warning', '~> 1.3.0'
