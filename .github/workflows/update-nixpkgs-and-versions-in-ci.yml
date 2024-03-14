@@ -1,4 +1,4 @@
-name: Update nixpkgs and CI dependencies
+name: 🤖🆙❄️
 on:
   pull_request:
     paths:
@@ -15,6 +15,7 @@ jobs:
     if: (github.event.sender.login == 'kachick') || (github.event_name != 'pull_request')
     with:
       dry-run: ${{ github.event_name == 'pull_request' }}
+      pr-title: 'Bump flake.lock and related dependencies'
       optional-run: |
         nix develop --command ruby -e 'puts RUBY_VERSION' > .ruby-version
         # https://stackoverflow.com/q/34807971
