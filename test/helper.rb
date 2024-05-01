@@ -13,6 +13,10 @@ require 'irb/power_assert'
 Warning[:deprecated] = true
 Warning[:experimental] = true
 
+Gem.path.each do |path|
+  Warning.ignore(//, path)
+end
+
 Warning.process do |_warning|
   :raise
 end
