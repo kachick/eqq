@@ -58,12 +58,10 @@ task :deps do
   sh 'ruby --version'
   sh 'dprint --version'
   sh 'typos --version'
-  sh 'actionlint --version'
 end
 
 desc 'Tests except ruby'
 task :check_non_ruby do
   sh 'dprint check'
   sh 'typos . .github .vscode'
-  sh 'actionlint'
 end

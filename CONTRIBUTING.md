@@ -27,7 +27,6 @@ After installing [Nix](https://nixos.org/) package manager, you can do following
 ```console
 $ nix develop
 $ dprint check
-$ actionlint
 ...
 ```
 

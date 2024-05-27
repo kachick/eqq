@@ -28,11 +28,14 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest]
+        os: [ubuntu-24.04]
         # Due to https://github.com/actions/runner/issues/849, we have to use quotes for '3.0'
         ruby: [head, '3.3', '3.2']
     runs-on: ${{ matrix.os }}
     steps:
+      - name: Install libyaml
+        if: startsWith(matrix.os, 'ubuntu-') && matrix.ruby == '3.2'
+        run: sudo apt-get install --no-install-recommends --assume-yes libyaml-dev
       - uses: actions/checkout@v4
       - uses: ruby/setup-ruby@v1
         env:
