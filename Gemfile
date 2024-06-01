@@ -8,7 +8,7 @@ gemspec
 group :development, :test do
   gem 'rake', '~> 13.2.1'
   gem 'irb', '~> 1.13.0'
-  gem 'irb-power_assert', '0.2.0'
+  gem 'irb-power_assert', '0.3.1'
 end
 
 group :development do
