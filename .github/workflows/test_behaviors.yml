@@ -35,9 +35,6 @@ jobs:
     env:
       BUNDLE_WITHOUT: development
     steps:
-      - name: Install libyaml
-        if: startsWith(matrix.os, 'ubuntu-')
-        run: sudo apt-get install --no-install-recommends --assume-yes libyaml-dev
       - uses: actions/checkout@v4
       - uses: ruby/setup-ruby@v1
         with:
