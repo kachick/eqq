@@ -3,6 +3,10 @@
 ![Build Status](https://github.com/kachick/eqq/actions/workflows/test_behaviors.yml/badge.svg?branch=main)
 [![Gem Version](https://badge.fury.io/rb/eqq.svg)](http://badge.fury.io/rb/eqq)
 
+- _**This repository is archived**_
+- _**No longer maintained**_
+- _**[Registered gem](https://rubygems.org/gems/eqq) remains for now**_
+
 Pattern objects builder
 
 ## Usage
