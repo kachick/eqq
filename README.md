@@ -149,7 +149,6 @@ When you felt annoy to write `Eqq` in many place, some ways exist.
 ## Links
 
 - [Repository](https://github.com/kachick/eqq)
-- [API documents](https://kachick.github.io/eqq)
 
 ## NOTE
 
