@@ -5,7 +5,7 @@
 
 - _**This repository is archived**_
 - _**No longer maintained**_
-- _**[Registered gem](https://rubygems.org/gems/eqq) remains for now**_
+- _**Registered gem remains for now**_
 
 Pattern objects builder
 
